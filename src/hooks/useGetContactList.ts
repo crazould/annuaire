@@ -26,7 +26,11 @@ const GET_CONTACT_LIST = gql`
   }
 `;
 
-function useGetContactList(searchQuery: string, limit: number, offset: number) {
+function useGetContactList(
+  searchQuery: string,
+  limit?: number,
+  offset?: number
+) {
   return useQuery(GET_CONTACT_LIST, {
     variables: {
       limit,

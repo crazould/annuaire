@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 const ADD_CONTACT_WITH_PHONES = gql`
   mutation AddContactWithPhones(
@@ -26,11 +26,14 @@ const ADD_CONTACT_WITH_PHONES = gql`
 `;
 
 function useAddContactWithPhones(
-  first_name: String,
-  last_name: String,
-  phones: String
+  first_name: string,
+  last_name: string,
+  numbers: string[]
 ) {
-  return useQuery(ADD_CONTACT_WITH_PHONES, {
+  const phones = numbers.map((n) => {
+    return { number: n };
+  });
+  return useMutation(ADD_CONTACT_WITH_PHONES, {
     variables: {
       first_name,
       last_name,

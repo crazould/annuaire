@@ -4,8 +4,7 @@ import { Contact } from "../pages/ContactPage";
 import useGetContactList from "../hooks/useGetContactList";
 
 export const ContactList = ({ searchQuery }: any) => {
-  const { loading, error, data } = useGetContactList(searchQuery, 10, 1);
-  if (error) console.log(error);
+  const { loading, error, data } = useGetContactList(searchQuery);
   if (loading || error) return <>...</>;
   return (
     <div>
