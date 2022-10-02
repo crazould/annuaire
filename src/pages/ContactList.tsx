@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useGetContactList from "../hooks/useGetContactList";
 
-interface Phone {
+export interface Phone {
   number: any;
 }
 
-interface Contact {
+export interface Contact {
   id: React.Key;
-  first_name: String;
-  last_name: String;
+  first_name: string;
+  last_name: string;
   phones: Phone[];
 }
 
