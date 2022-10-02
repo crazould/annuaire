@@ -5,7 +5,7 @@ import { Contact, Phone } from "./ContactList";
 
 const FormContact = () => {
   const { id } = useParams();
-  const { loading, error, data } = useGetContactDetail(id);
+  const { loading, error, data } = useGetContactDetail(parseInt(id as string));
 
   if (id && (loading || error)) return <>...</>;
 
@@ -37,10 +37,20 @@ const FormContact = () => {
       <h1>Form Contact</h1>
       <form>
         <div>
-          <input type="text" onChange={handleChange} placeholder="first name" value={first_name} />
+          <input
+            type="text"
+            onChange={handleChange}
+            placeholder="first name"
+            value={first_name}
+          />
         </div>
         <div>
-          <input type="text" onChange={handleChange} placeholder="last name" value={last_name} />
+          <input
+            type="text"
+            onChange={handleChange}
+            placeholder="last name"
+            value={last_name}
+          />
         </div>
         <div>{phoneList}</div>
         <div>

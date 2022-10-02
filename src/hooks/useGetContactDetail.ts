@@ -14,10 +14,11 @@ const GET_CONTACT_DETAIL = gql`
   }
 `;
 
-function useGetContactDetail(id: any) {
+function useGetContactDetail(id: number) {
   return useQuery(GET_CONTACT_DETAIL, {
     variables: {
       id,
+      
     },
   });
 }

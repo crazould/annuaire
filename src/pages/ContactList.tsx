@@ -16,35 +16,40 @@ export interface Contact {
 const ContactList = () => {
   const { loading, error, data } = useGetContactList();
 
-  let contactList;
-
   if (loading || error) return <>...</>;
 
-  console.log(data);
-  contactList = data.contact.map((contact: Contact) => (
-    <div
-      key={contact.id}
-      style={{ margin: "5px", background: "#60a5fa", color: "white" }}
-    >
-      <div>
-        <div>{contact.first_name}</div>
-        <div>{contact.last_name}</div>
+  const contactList = data.contact.map(
+    ({ id, first_name, last_name, phones }: Contact) => (
+      <div
+        key={id}
+        style={{
+          margin: ".75rem 0px",
+          padding: "1rem 2rem",
+          background: "#60a5fa",
+          color: "white",
+          display: "flex",
+          justifyContent: "space-between",
+          borderRadius: '0.25rem',
+        }}
+      >
+        <div>
+          <div>{`${first_name} ${last_name}`}</div>
+          <div>
+            {phones[0].number}
+            {phones.length > 1 ? ` +${phones.length - 1}` : ""}
+          </div>
+        </div>
+        <div style={{ display: "block" }}>
+          <button>favorite</button>
+          <Link to={`/edit/${id}`}>edit</Link>
+          <button>delete</button>
+        </div>
       </div>
-      <div>
-        {contact.phones.map((phone: Phone) => {
-          return <span key={phone.number}>{phone.number}</span>;
-        })}
-      </div>
-      <div>
-        <button>favorite</button>
-        <Link to={`/edit/${contact.id}`}>edit</Link>
-        <button>delete</button>
-      </div>
-    </div>
-  ));
+    )
+  );
 
   return (
-    <div>
+    <div style={{ marginInline: "auto", maxWidth: 512 }}>
       <h1>Contact List</h1>
       <Link to="/add">Add contact</Link>
       {contactList}

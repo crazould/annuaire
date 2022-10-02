@@ -27,7 +27,8 @@ const GET_CONTACT_LIST = gql`
 `;
 
 function useGetContactList() {
-  return useQuery(GET_CONTACT_LIST);
+  return useQuery(GET_CONTACT_LIST, {
+  });
 }
 
 export default useGetContactList;
