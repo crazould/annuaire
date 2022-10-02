@@ -15,7 +15,6 @@ export interface Contact {
 
 const ContactPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
   const handleSearch = (e: React.ChangeEvent) => {
     setSearchQuery((e.target as HTMLInputElement).value);
   };
