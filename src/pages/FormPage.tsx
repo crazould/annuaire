@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import useGetContactDetail from "../hooks/useGetContactDetail";
-import { Phone } from "./ContactList";
+import { Phone } from "./ContactPage";
 
 const FormContact = () => {
   const { id } = useParams();
@@ -11,32 +11,32 @@ const FormContact = () => {
   const [numbers, setNumbers] = useState([""]);
 
   useEffect(() => {
-    if (data) {
-      const { first_name, last_name, phones } = data.contact_by_pk;
-      setFirstName(first_name);
-      setLastName(last_name);
-      setNumbers(phones.map((p: Phone) => p.number));
-    }
+    if (!data) return;
+    const { first_name, last_name, phones } = data.contact_by_pk;
+    setFirstName(first_name);
+    setLastName(last_name);
+    setNumbers(phones.map((p: Phone) => p.number));
   }, [data]);
 
-  if (id && (loading || error)) return <>...</>;
-
   const changeFirstName = (e: React.ChangeEvent) => {
-    const input = e.target as HTMLInputElement;
-    setFirstName(input.value);
+    setFirstName((e.target as HTMLInputElement).value);
   };
 
   const changeLastName = (e: React.ChangeEvent) => {
-    const input = e.target as HTMLInputElement;
-    setLastName(input.value);
+    setLastName((e.target as HTMLInputElement).value);
   };
 
   const changePhone = (e: React.ChangeEvent, idx: number) => {
-    const input = e.target as HTMLInputElement;
     let newPhones = [...numbers];
-    newPhones[idx] = input.value;
+    newPhones[idx] = (e.target as HTMLInputElement).value;
     setNumbers(newPhones);
   };
+
+  const addPhoneInput = () => {
+    setNumbers([...numbers, ""]);
+  };
+
+  if (id && (loading || error)) return <>...</>;
 
   const phonesInput = numbers.map((number, idx) => (
     <input
@@ -48,12 +48,8 @@ const FormContact = () => {
     />
   ));
 
-  const addPhoneInput = () => {
-    setNumbers([...numbers, ""]);
-  };
-
   return (
-    <div>
+    <>
       <h1>Form Contact</h1>
       <div>
         <div>
@@ -77,11 +73,11 @@ const FormContact = () => {
           <button onClick={addPhoneInput}>+</button>
         </div>
         <div>
-          <Link to="/">cancel</Link>
           <input type="button" value="save" />
+          <Link to="/">cancel</Link>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
