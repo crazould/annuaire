@@ -14,7 +14,7 @@ const GET_CONTACT_DETAIL = gql`
   }
 `;
 
-function useGetContactDetail(id: number) {
+function useGetContactDetail(id: string | undefined) {
   return useQuery(GET_CONTACT_DETAIL, {
     variables: {
       id,

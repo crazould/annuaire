@@ -3,13 +3,13 @@ import { ContactList } from "../components/ContactList";
 import { Link } from "react-router-dom";
 
 export interface Phone {
-  number: any;
+  number: string;
 }
 
 export interface Contact {
   id: React.Key;
-  first_name: string;
-  last_name: string;
+  first_name?: string;
+  last_name?: string;
   phones: Phone[];
 }
 

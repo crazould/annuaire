@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import useEditContact from "../hooks/useEditContact";
 import useGetContactDetail from "../hooks/useGetContactDetail";
 import { Phone } from "./ContactPage";
 
 const EditContactPage = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const { loading, error, data } = useGetContactDetail(parseInt(id as string));
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [numbers, setNumbers] = useState([""]);
 
-  useEffect(() => {
-    if (!data) return;
-    const { first_name, last_name, phones } = data.contact_by_pk;
-    setFirstName(first_name);
-    setLastName(last_name);
-    setNumbers(phones.map((p: Phone) => p.number));
-  }, [data, navigate]);
+  const { id } = useParams();
+  const { data } = useGetContactDetail(id);
+  const [editContact, editResult] = useEditContact(id, firstName, lastName);
 
-  if (id && (loading || error)) return <>...</>;
+  useEffect(() => {
+    if (data && !editResult.data){
+      const { first_name, last_name, phones } = data.contact_by_pk;
+      setFirstName(first_name);
+      setLastName(last_name);
+      setNumbers(phones.map((p: Phone) => p.number));
+    }
+    if(editResult.data){
+      alert("Edit contact success")
+      navigate("/")
+    }
+  }, [data, editResult.data]);
+
+  if (!data) return <>...</>;
 
   const changeFirstName = (e: React.ChangeEvent) => {
     setFirstName((e.target as HTMLInputElement).value);
@@ -41,6 +50,7 @@ const EditContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    editContact();
   };
 
   const phonesInput = numbers.map((number, idx) => (
@@ -62,6 +72,7 @@ const EditContactPage = () => {
             type="text"
             onChange={changeFirstName}
             placeholder="first name"
+            required
             value={firstName}
           />
         </div>
@@ -70,6 +81,7 @@ const EditContactPage = () => {
             type="text"
             onChange={changeLastName}
             placeholder="last name"
+            required
             value={lastName}
           />
         </div>
@@ -78,7 +90,7 @@ const EditContactPage = () => {
           <button onClick={addPhoneInput}>+</button>
         </div>
         <div>
-          <input type="button" value="save" />
+          <input type="submit" value="save" />
           <Link to="/">cancel</Link>
         </div>
       </form>

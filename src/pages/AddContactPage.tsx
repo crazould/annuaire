@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAddContactWithPhones from "../hooks/useAddContactWithPhones";
-import { Phone } from "./ContactPage";
 
 const AddContactPage = () => {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const AddContactPage = () => {
     if (!data) return;
     alert("Add contact success");
     navigate("/");
-  }, [data, navigate]);
+  }, [data]);
 
   const changeFirstName = (e: React.ChangeEvent) => {
     setFirstName((e.target as HTMLInputElement).value);
@@ -50,6 +49,7 @@ const AddContactPage = () => {
       key={idx}
       type="tel"
       value={number}
+      required
     />
   ));
 
@@ -63,6 +63,7 @@ const AddContactPage = () => {
             onChange={changeFirstName}
             placeholder="first name"
             value={firstName}
+            required
           />
         </div>
         <div>
@@ -71,6 +72,7 @@ const AddContactPage = () => {
             onChange={changeLastName}
             placeholder="last name"
             value={lastName}
+            required
           />
         </div>
         <div>
