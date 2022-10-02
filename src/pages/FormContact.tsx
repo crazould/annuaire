@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import useGetContactDetail from "../hooks/useGetContactDetail";
 import { Phone } from "./ContactList";
@@ -6,10 +6,18 @@ import { Phone } from "./ContactList";
 const FormContact = () => {
   const { id } = useParams();
   const { loading, error, data } = useGetContactDetail(parseInt(id as string));
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [phones, setPhones] = useState([{ number: "" }]);
+  const [numbers, setNumbers] = useState([""]);
+
+  useEffect(() => {
+    if (data) {
+      const { first_name, last_name, phones } = data.contact_by_pk;
+      setFirstName(first_name);
+      setLastName(last_name);
+      setNumbers(phones.map((p: Phone) => p.number));
+    }
+  }, [data]);
 
   if (id && (loading || error)) return <>...</>;
 
@@ -25,19 +33,12 @@ const FormContact = () => {
 
   const changePhone = (e: React.ChangeEvent, idx: number) => {
     const input = e.target as HTMLInputElement;
-    let newPhones = [...phones];
-    newPhones[idx].number = input.value;
-    setPhones(newPhones);
+    let newPhones = [...numbers];
+    newPhones[idx] = input.value;
+    setNumbers(newPhones);
   };
 
-  if (data) {
-    const { first_name, last_name, phones } = data.contact_by_pk;
-    setFirstName(first_name);
-    setLastName(last_name);
-    setPhones(phones);
-  }
-
-  const phonesInput = phones.map(({ number }: Phone, idx) => (
+  const phonesInput = numbers.map((number, idx) => (
     <input
       onChange={(e) => changePhone(e, idx)}
       placeholder="phone number"
@@ -48,7 +49,7 @@ const FormContact = () => {
   ));
 
   const addPhoneInput = () => {
-    setPhones([...phones, { number: "" }]);
+    setNumbers([...numbers, ""]);
   };
 
   return (
