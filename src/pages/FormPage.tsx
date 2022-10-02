@@ -27,7 +27,7 @@ const FormContact = () => {
     setFirstName(first_name);
     setLastName(last_name);
     setNumbers(phones.map((p: Phone) => p.number));
-  }, [data, AddResult]);
+  }, [data, AddResult, navigate]);
 
   if (id && (loading || error)) return <>...</>;
 

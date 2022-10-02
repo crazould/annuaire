@@ -18,7 +18,6 @@ function useGetContactDetail(id: number) {
   return useQuery(GET_CONTACT_DETAIL, {
     variables: {
       id,
-      
     },
   });
 }
