@@ -22,7 +22,11 @@ const EDIT_PHONE_NUMBER = gql`
   }
 `;
 
-function useEditPhoneNumber(id: string | undefined, oldNumber: string, newNumber: string) {
+function useEditPhoneNumber(
+  id: string | undefined,
+  oldNumber: string,
+  newNumber: string
+) {
   const variables = {
     pk_columns: {
       number: oldNumber,

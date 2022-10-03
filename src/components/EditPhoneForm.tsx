@@ -20,12 +20,6 @@ const EditPhoneForm = ({ id, numbers, setNumbers }: EditPhoneFormProps) => {
     }
   }, [addNumberResult.data]);
 
-  const changePhones = (e: React.ChangeEvent, idx: number) => {
-    let newNumbers = [...numbers];
-    newNumbers[idx] = (e.target as HTMLInputElement).value;
-    setNumbers(newNumbers);
-  };
-
   const handleAddMode = () => {
     if (addMode) addNumber();
     setAddMode(!addMode);
@@ -36,7 +30,7 @@ const EditPhoneForm = ({ id, numbers, setNumbers }: EditPhoneFormProps) => {
   };
 
   const phonesInput = numbers.map((number, idx) => {
-    const props = { changePhones, idx, number };
+    const props = { number, id };
     return <EditPhoneInput key={idx} {...props} />;
   });
 

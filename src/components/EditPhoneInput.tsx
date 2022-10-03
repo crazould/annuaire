@@ -2,15 +2,31 @@ import React, { useEffect, useState } from "react";
 import useEditPhoneNumber from "../hooks/useEditPhoneNumber";
 
 interface EditPhoneInputProps {
-  changePhones(e: React.ChangeEvent, idx: number): void;
-  idx: number;
+  id: string | undefined;
   number: string;
 }
 
-const EditPhoneInput = ({ changePhones, idx, number }: EditPhoneInputProps) => {
+const EditPhoneInput = ({ id, number }: EditPhoneInputProps) => {
   const [editMode, setEditMode] = useState(false);
+  const [newNumber, setNewNumber] = useState(number);
+  const [editPhone, editPhoneResult] = useEditPhoneNumber(
+    id,
+    number,
+    newNumber
+  );
+
+  useEffect(() => {
+    if (editPhoneResult.data) {
+      alert("Edit phone number success");
+    }
+  }, [editPhoneResult.data]);
+
+  const changePhones = (e: React.ChangeEvent) => {
+    setNewNumber((e.target as HTMLInputElement).value);
+  };
 
   const handleAction = () => {
+    if (editMode) editPhone();
     setEditMode(!editMode);
   };
 
@@ -23,10 +39,10 @@ const EditPhoneInput = ({ changePhones, idx, number }: EditPhoneInputProps) => {
   return (
     <div>
       <input
-        onChange={(e) => changePhones(e, idx)}
+        onChange={changePhones}
         placeholder="phone number"
         type="tel"
-        value={number}
+        value={newNumber}
         disabled={!editMode}
       />
       {actionBtn}
