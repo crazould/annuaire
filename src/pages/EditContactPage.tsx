@@ -3,7 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import EditPhoneForm from "../components/EditPhoneForm";
 import useEditContact from "../hooks/useEditContact";
 import useGetContactDetail from "../hooks/useGetContactDetail";
-import { Phone } from "./ContactPage";
+import { Phone } from "../App";
+
 
 const EditContactPage = () => {
   const navigate = useNavigate();

@@ -11,7 +11,6 @@ interface EditPhoneFormProps {
 const EditPhoneForm = ({ id, numbers, setNumbers }: EditPhoneFormProps) => {
   const [addMode, setAddMode] = useState(false);
   const [newNumber, setNewNumber] = useState("");
-
   const [addNumber, addNumberResult] = useAddNumberToContact(id, newNumber);
 
   useEffect(() => {

@@ -1,14 +1,11 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import useDeleteContact from "../hooks/useDeleteContact";
-import { Contact } from "../pages/ContactPage";
+import { Contact } from "../App";
 
 const ContactItem = ({ id, first_name, last_name, phones }: Contact) => {
   const [deleteContact, deleteResult] = useDeleteContact(id);
-
-  const handleDelete = () => {
-    deleteContact();
-  };
+  const handleDelete = () => deleteContact();
 
   useEffect(() => {
     if (deleteResult.error) console.log(deleteResult.error);
