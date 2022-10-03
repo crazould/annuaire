@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 const EDIT_PHONE_NUMBER = gql`
   mutation EditPhoneNumber(
@@ -22,8 +22,15 @@ const EDIT_PHONE_NUMBER = gql`
   }
 `;
 
-function useEditPhoneNumber() {
-  return useQuery(EDIT_PHONE_NUMBER);
+function useEditPhoneNumber(id: string | undefined, oldNumber: string, newNumber: string) {
+  const variables = {
+    pk_columns: {
+      number: oldNumber,
+      contact_id: id,
+    },
+    new_phone_number: newNumber,
+  };
+  return useMutation(EDIT_PHONE_NUMBER, { variables });
 }
 
 export default useEditPhoneNumber;

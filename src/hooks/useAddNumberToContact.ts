@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 const ADD_NUMBER_TO_CONTACT = gql`
   mutation AddNumberToContact($contact_id: Int!, $phone_number: String!) {
@@ -17,8 +17,12 @@ const ADD_NUMBER_TO_CONTACT = gql`
   }
 `;
 
-function useAddNumberToContact() {
-  return useQuery(ADD_NUMBER_TO_CONTACT);
+function useAddNumberToContact(id: string | undefined, number: string) {
+  const variables = {
+    contact_id: id,
+    phone_number: number,
+  };
+  return useMutation(ADD_NUMBER_TO_CONTACT, { variables });
 }
 
 export default useAddNumberToContact;
