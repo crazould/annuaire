@@ -34,6 +34,20 @@ const EditContactPage = () => {
 
   const saveContact = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const newName = `${firstName} ${lastName}`;
+    const isExists = contacts.find(
+      (c) => newName == `${c.first_name} ${c.last_name}`
+    );
+    if (isExists) {
+      alert("name already used");
+      return;
+    }
+    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    if (specialChars.test(newName)) {
+      alert("please don't use special characters");
+      return;
+    }
     editContact();
     setEditMode(!editMode);
   };
