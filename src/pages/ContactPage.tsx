@@ -21,12 +21,36 @@ const ContactPage = () => {
   const { data } = useGetContactList();
 
   useEffect(() => {
-    if(!data) return
-    setContacts(data.contact)
+    console.log(data);
+    if (data) {
+      setContacts(data.contact);
+      localStorage.setItem("contacts", JSON.stringify(data.contact));
+    } else {
+      const localContacts = localStorage.getItem("contacts");
+      localContacts
+        ? setContacts(JSON.parse(localContacts))
+        : localStorage.setItem("contacts", JSON.stringify(contacts));
+    }
   }, [data]);
 
   const handleSearch = (e: React.ChangeEvent) => {
-    setSearchQuery((e.target as HTMLInputElement).value);
+    const newSearchQuery = (e.target as HTMLInputElement).value;
+    let filteredContacts: Contact[] = [];
+    
+    if (newSearchQuery.length) {
+      filteredContacts = [...contacts]
+      filteredContacts = filteredContacts.filter(
+        (c) =>
+          c.first_name?.includes(newSearchQuery) ||
+          c.last_name?.includes(newSearchQuery)
+      );
+    } else {
+      const localContacts = localStorage.getItem("contacts");
+      if (localContacts) filteredContacts = [...JSON.parse(localContacts)];
+    }
+
+    setContacts(filteredContacts);
+    setSearchQuery(newSearchQuery);
   };
 
   if (!data) return <>...</>;

@@ -8,15 +8,14 @@ interface ContactListProps {
 
 export const ContactList = ({ contacts }: ContactListProps) => {
   const [page, setPage] = useState(0);
-  const pages = new Array(Math.ceil(contacts.length / 10)).fill(" ");
-
-  console.log({ pages, size: contacts.length, page });
+  
+  const pages = new Array(Math.ceil(contacts.length / 3)).fill(" ");
   const changePage = (idx: number) => () => setPage(idx);
 
   return (
     <>
       {contacts
-        .slice(0 + page * 10, 10 + page * 10)
+        .slice(0 + page * 3, 3 + page * 3)
         .map((contact: Contact, idx: number) => {
           return <ContactItem key={idx} {...contact} />;
         })}
