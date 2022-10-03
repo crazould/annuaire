@@ -1,19 +1,30 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useDeleteContact from "../hooks/useDeleteContact";
-import { Contact } from "../App";
+import { Contact, ContactsContext } from "../App";
 
-const ContactItem = ({ id, first_name, last_name, phones }: Contact) => {
-  const [deleteContact, deleteResult] = useDeleteContact(id);
+const ContactItem = ({
+  id,
+  first_name,
+  last_name,
+  phones,
+  isFavorite,
+}: Contact) => {
+  const { contacts, setContacts } = useContext(ContactsContext);
+  const [deleteContact, { data }] = useDeleteContact(id);
   const handleDelete = () => deleteContact();
 
   useEffect(() => {
-    if (deleteResult.error) console.log(deleteResult.error);
-    if (deleteResult.data) {
-      console.log(deleteResult.data);
+    if (data) {
+      const newContacts = [...contacts];
+      const index = newContacts.findIndex(
+        (c) => c.id == data.delete_contact_by_pk.id
+      );
+      newContacts.splice(index, 1);
+      setContacts(newContacts);
       alert("delete success");
     }
-  }, [deleteResult]);
+  }, [data]);
 
   return (
     <div
