@@ -7,7 +7,7 @@ export interface Phone {
 }
 
 export interface Contact {
-  id: React.Key;
+  id: string | undefined;
   first_name?: string;
   last_name?: string;
   phones: Phone[];

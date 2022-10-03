@@ -1,5 +1,4 @@
 import { gql, useMutation } from "@apollo/client";
-import { Contact } from "../pages/ContactPage";
 
 const EDIT_CONTACT = gql`
   mutation EditContact($id: Int!, $_set: contact_set_input) {

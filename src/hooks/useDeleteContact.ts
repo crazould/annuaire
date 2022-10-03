@@ -1,5 +1,4 @@
 import { gql, useMutation } from "@apollo/client";
-import React from "react";
 
 const DELETE_CONTACT = gql`
   mutation MyMutation($id: Int!) {
@@ -11,7 +10,7 @@ const DELETE_CONTACT = gql`
   }
 `;
 
-function useDeleteContact(id: number | React.Key) {
+function useDeleteContact(id: string | undefined) {
   return useMutation(DELETE_CONTACT, { variables: { id } });
 }
 
