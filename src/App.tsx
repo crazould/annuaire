@@ -5,7 +5,9 @@ function App() {
   return (
     <div>
       <h1>Phone book</h1>
-      <RouteList/>
+      <div style={{marginBlock: '2rem'}}>
+        <RouteList/>
+      </div>
     </div>
   );
 }
