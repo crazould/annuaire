@@ -42,6 +42,13 @@ const AddContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const isExists = contacts.find(
+      (c) => `${firstName} ${lastName}` == `${c.first_name} ${c.last_name}`
+    );
+    if (isExists) {
+      alert("name already used");
+      return;
+    }
     addContact();
   };
 
