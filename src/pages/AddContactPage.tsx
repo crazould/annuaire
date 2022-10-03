@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ContactsContext } from "../App";
 import useAddContactWithPhones from "../hooks/useAddContactWithPhones";
 
 const AddContactPage = () => {
@@ -7,6 +8,7 @@ const AddContactPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [numbers, setNumbers] = useState([""]);
+  const { contacts, setContacts } = useContext(ContactsContext);
   const [addContact, { data }] = useAddContactWithPhones(
     firstName,
     lastName,
@@ -15,6 +17,7 @@ const AddContactPage = () => {
 
   useEffect(() => {
     if (!data) return;
+    setContacts([...contacts, data.insert_contact.returning[0]]);
     alert("Add contact success");
     navigate("/");
   }, [data]);

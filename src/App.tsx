@@ -7,8 +7,8 @@ export interface Phone {
 }
 export interface Contact {
   id: string | undefined;
-  first_name?: string;
-  last_name?: string;
+  first_name: string;
+  last_name: string;
   phones: Phone[];
   isFavorite: boolean;
 }
@@ -29,8 +29,8 @@ function App() {
   const { data } = useGetContactList();
 
   useEffect(() => {
-    console.log(data);
     if (data) {
+      console.log(data.contact);
       setContacts(data.contact);
       localStorage.setItem("contacts", JSON.stringify(data.contact));
     } else {

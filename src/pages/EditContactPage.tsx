@@ -1,40 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import EditPhoneForm from "../components/EditPhoneForm";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+import EditPhoneForm from "../components/PhoneForm";
 import useEditContact from "../hooks/useEditContact";
-import useGetContactDetail from "../hooks/useGetContactDetail";
-import { Phone } from "../App";
-
+import { ContactsContext } from "../App";
+import ActionBtn from "../components/ActionBtn";
 
 const EditContactPage = () => {
-  const navigate = useNavigate();
-
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [numbers, setNumbers] = useState([""]);
-
   const { id } = useParams();
-  const { data } = useGetContactDetail(id);
-  const [editContact, editContactResult] = useEditContact(
-    id,
-    firstName,
-    lastName
-  );
+  const { contacts, setContacts } = useContext(ContactsContext);
+  const contact = contacts.find((c) => c.id == id);
+  const { first_name, last_name } = contact
+    ? contact
+    : { first_name: "", last_name: "" };
+  const [firstName, setFirstName] = useState(first_name);
+  const [lastName, setLastName] = useState(last_name);
+  const [editContact, { data }] = useEditContact(id, firstName, lastName);
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
-    if (data && !editContactResult.data) {
-      const { first_name, last_name, phones } = data.contact_by_pk;
-      setFirstName(first_name);
-      setLastName(last_name);
-      setNumbers(phones.map((p: Phone) => p.number));
-    }
-    if (editContactResult.data) {
+    if (data) {
+      setContacts([...contacts, data.update_contact_by_pk]);
       alert("Edit contact success");
-      navigate("/");
     }
-  }, [data, editContactResult.data]);
-
-  if (!data) return <>...</>;
+  }, [data]);
 
   const changeFirstName = (e: React.ChangeEvent) => {
     setFirstName((e.target as HTMLInputElement).value);
@@ -47,13 +35,14 @@ const EditContactPage = () => {
   const saveContact = (e: React.FormEvent) => {
     e.preventDefault();
     editContact();
+    setEditMode(!editMode);
   };
 
   return (
     <>
       <h1>Edit Contact Form</h1>
       <div>
-        <div>
+        <form onSubmit={saveContact}>
           <div>
             <input
               type="text"
@@ -61,6 +50,7 @@ const EditContactPage = () => {
               placeholder="first name"
               required
               value={firstName}
+              disabled={!editMode}
             />
           </div>
           <div>
@@ -70,14 +60,13 @@ const EditContactPage = () => {
               placeholder="last name"
               required
               value={lastName}
+              disabled={!editMode}
             />
           </div>
-          <div>
-            <input type="submit" value="save" onClick={saveContact} />
-            <Link to="/">cancel</Link>
-          </div>
-        </div>
-        <EditPhoneForm id={id} numbers={numbers} setNumbers={setNumbers} />
+          <ActionBtn mode={editMode} setMode={setEditMode} />
+        </form>
+        {contact ? <EditPhoneForm contact={contact} /> : ""}
+        <Link to="/">back</Link>
       </div>
     </>
   );

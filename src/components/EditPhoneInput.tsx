@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ContactsContext, Phone } from "../App";
 import useEditPhoneNumber from "../hooks/useEditPhoneNumber";
+import ActionBtn from "./ActionBtn";
 
 interface EditPhoneInputProps {
   id: string | undefined;
@@ -7,45 +9,44 @@ interface EditPhoneInputProps {
 }
 
 const EditPhoneInput = ({ id, number }: EditPhoneInputProps) => {
+  const { contacts, setContacts } = useContext(ContactsContext);
   const [editMode, setEditMode] = useState(false);
   const [newNumber, setNewNumber] = useState(number);
-  const [editPhone, editPhoneResult] = useEditPhoneNumber(
+  const [editPhone, {data}] = useEditPhoneNumber(
     id,
     number,
     newNumber
   );
 
   useEffect(() => {
-    if (editPhoneResult.data) {
+    if (data) {
+      setContacts([...contacts, data.update_phone_by_pk]);
       alert("Edit phone number success");
     }
-  }, [editPhoneResult.data]);
+  }, [data]);
 
   const changePhones = (e: React.ChangeEvent) => {
     setNewNumber((e.target as HTMLInputElement).value);
   };
 
-  const handleAction = () => {
-    if (editMode) editPhone();
+  const savePhone = (e: React.FormEvent) => {
+    e.preventDefault();
+    editPhone();
     setEditMode(!editMode);
   };
 
-  const actionBtn = editMode ? (
-    <button onClick={handleAction}>save</button>
-  ) : (
-    <button onClick={handleAction}>edit</button>
-  );
-
   return (
     <div>
-      <input
-        onChange={changePhones}
-        placeholder="phone number"
-        type="tel"
-        value={newNumber}
-        disabled={!editMode}
-      />
-      {actionBtn}
+      <form onSubmit={savePhone}>
+        <input
+          onChange={changePhones}
+          placeholder="phone number"
+          type="tel"
+          value={newNumber}
+          disabled={!editMode}
+        />
+        <ActionBtn mode={editMode} setMode={setEditMode} />
+      </form>
     </div>
   );
 };
