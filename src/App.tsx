@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { RouteList } from "./components/RouteList";
 import { ContactsContext } from "./context/ContactsContext";
 import useGetContactList from "./hooks/useGetContactList";
-import { ThemeProvider } from "@emotion/react";
+import { css, ThemeProvider } from "@emotion/react";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 export interface Phone {
   number: string;
 }
@@ -68,21 +69,25 @@ function App() {
     localTheme
       ? setIsDark(JSON.parse(localTheme))
       : localStorage.setItem("theme", JSON.stringify(isDark));
-
   }, [data]);
 
   if (!data) return <>...</>;
 
+  const wrapperStyle = css`
+    color: ${isDark ? themeDark.text : themeLight.text};
+    background-color: ${isDark ? themeDark.bg : themeLight.bg};
+    padding-block: 1.25rem;
+  `
+
   return (
     <ThemeProvider theme={isDark ? themeDark : themeLight}>
       <Header isDark={isDark} setIsDark={setIsDark} />
-      <div>
-        <div style={{ marginBlock: "2rem" }}>
-          <ContactsContext.Provider value={{ contacts, setContacts }}>
-            <RouteList />
-          </ContactsContext.Provider>
-        </div>
-      </div>
+      <main css={wrapperStyle}>
+        <ContactsContext.Provider value={{ contacts, setContacts }}>
+          <RouteList />
+        </ContactsContext.Provider>
+      </main>
+      <Footer />
     </ThemeProvider>
   );
 }

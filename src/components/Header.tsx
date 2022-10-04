@@ -9,6 +9,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ isDark, setIsDark }: HeaderProps) => {
+  
   const theme = useTheme();
   const toggleTheme = () => {
     const newTheme = !isDark;
@@ -18,18 +19,17 @@ export const Header = ({ isDark, setIsDark }: HeaderProps) => {
 
   const headerStyle = css`
     background-color: ${theme.bgComponent};
-    color: ${theme.accent};
+    color: ${theme.text};
     border: ${theme.borderComponent};
-    margin: 0;
+    user-select: none;
     > div {
       display: flex;
-      min-width: 300px;
-      max-width: 1280px;
+      max-width: 1024px;
       justify-content: space-between;
       align-items: center;
       margin: 0 auto;
       padding: 1.25rem;
-      font-weight: bold;
+      font-size: 1.5rem;
       > button {
         color: ${theme.accent};
         background-color: ${theme.bg};
@@ -41,6 +41,7 @@ export const Header = ({ isDark, setIsDark }: HeaderProps) => {
       }
     }
   `;
+
   return (
     <header css={headerStyle}>
       <div>

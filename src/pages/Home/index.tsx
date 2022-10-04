@@ -29,7 +29,6 @@ const HomePage = () => {
 
   return (
     <div style={{ marginInline: "auto", maxWidth: 512 }}>
-      <h1>Contact List</h1>
       <div>
         <input
           type="text"
