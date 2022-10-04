@@ -21,16 +21,18 @@ const themeLight = {
   text: "#18181b",
   bg: "#e4e4e7",
   bgComponent: "#fafafa",
-  borderComponent: "1px solid #d4d4d8",
+  border: "1px solid #d4d4d8",
   accent: "#2563eb",
+  accentHover: "#60a5fa",
 };
 
 const themeDark = {
   text: "#fafafa",
   bg: "#18181b",
   bgComponent: "#27272a",
-  borderComponent: "1px solid #404040",
+  border: "1px solid #404040",
   accent: "#2563eb",
+  accentHover: "#60a5fa",
 };
 
 function App() {
@@ -76,7 +78,8 @@ function App() {
   const wrapperStyle = css`
     color: ${isDark ? themeDark.text : themeLight.text};
     background-color: ${isDark ? themeDark.bg : themeLight.bg};
-    padding-block: 1.25rem;
+    padding-block: 2rem;
+    min-height: 90vh;
   `
 
   return (

@@ -7,7 +7,7 @@ export const Footer = () => {
 
   const footerStyle = css`
     background-color: ${theme.bgComponent};
-    border: ${theme.borderComponent};
+    border: ${theme.border};
     color: ${theme.text};
     font-size: 1rem;
     > div {
@@ -18,13 +18,16 @@ export const Footer = () => {
       margin: 0 auto;
       padding: 1.25rem;
       div {
-        width: 70px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        flex-direction: row-reverse;
         svg {
           color: ${theme.accent};
           cursor: pointer;
+          margin-left: 1rem;
+        }
+        svg:hover {
+          color: ${theme.accentHover};
         }
       }
     }
@@ -35,15 +38,15 @@ export const Footer = () => {
       <div>
         <span>© {new Date().getFullYear()} Thariq, All rights reserved</span>
         <div>
-          <IconBrandGithub
-            size={28}
-            target="_blank"
-            href="https://github.com/crazould"
-          />
           <IconBrandLinkedin
             size={28}
             target="_blank"
             href="https://www.linkedin.com/in/muhammad-filardi/"
+          />
+          <IconBrandGithub
+            size={28}
+            target="_blank"
+            href="https://github.com/crazould"
           />
         </div>
       </div>

@@ -1,17 +1,11 @@
 @import url('http://fonts.cdnfonts.com/css/futura-md-bt');
 
-
 body {
   margin: 0;
   font-family: 'Futura Md BT', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  background-color: #e4e4e7;
-  color: #18181b;
-  font-size: 1.25rem;
 }
 
 * {
-  transition: 200ms;
+  transition: 150ms;
 }

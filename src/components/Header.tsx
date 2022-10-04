@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { SetStateAction } from "react";
 import { css, useTheme } from "@emotion/react";
+import { SetStateAction } from "react";
 import { IconSun, IconMoon } from "@tabler/icons";
 
 interface HeaderProps {
@@ -20,7 +20,7 @@ export const Header = ({ isDark, setIsDark }: HeaderProps) => {
   const headerStyle = css`
     background-color: ${theme.bgComponent};
     color: ${theme.text};
-    border: ${theme.borderComponent};
+    border: ${theme.border};
     user-select: none;
     > div {
       display: flex;
@@ -33,11 +33,13 @@ export const Header = ({ isDark, setIsDark }: HeaderProps) => {
       > button {
         color: ${theme.accent};
         background-color: ${theme.bg};
-        border: ${theme.borderComponent};
+        border: ${theme.border};
         padding: 0.25rem;
         cursor: pointer;
-        border: ${theme.borderComponent};
         border-radius: 4px;
+      }
+      > button:hover {
+        background-color: ${theme.bgComponent};
       }
     }
   `;
