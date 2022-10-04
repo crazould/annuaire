@@ -1,8 +1,8 @@
+/** @jsxImportSource @emotion/react */
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useDeleteContact from "../hooks/useDeleteContact";
 import { Contact, ContactsContext } from "../App";
-/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
 const ContactItem = ({

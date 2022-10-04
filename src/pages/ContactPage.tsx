@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { ContactList } from "../components/ContactList";
 import { Link } from "react-router-dom";
 import { Contact, ContactsContext } from "../App";
+import { FavList } from "../components/FavList";
 
 const ContactPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,6 +26,8 @@ const ContactPage = () => {
     setSearchQuery(newSearchQuery);
   };
 
+  
+
   return (
     <div style={{ marginInline: "auto", maxWidth: 512 }}>
       <h1>Contact List</h1>
@@ -37,7 +40,8 @@ const ContactPage = () => {
         />
         <Link to="/add">New contact</Link>
       </div>
-      <ContactList contacts={contacts} />
+      <FavList contacts={contacts.filter(c => c.isFavorite)} />
+      <ContactList contacts={contacts.filter(c => !c.isFavorite)} />
     </div>
   );
 };

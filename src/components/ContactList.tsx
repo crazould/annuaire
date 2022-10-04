@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/** @jsxImportSource @emotion/react */
+import { useState } from "react";
 import { Contact } from "../App";
 import ContactItem from "./ContactItem";
 
@@ -8,12 +9,13 @@ interface ContactListProps {
 
 export const ContactList = ({ contacts }: ContactListProps) => {
   const [page, setPage] = useState(0);
-  const itemShow = 3;
+  const itemShow = 10;
   const pages = new Array(Math.ceil(contacts.length / itemShow)).fill(" ");
   const changePage = (idx: number) => () => setPage(idx);
 
   return (
-    <>
+    <div>
+      <strong>contacts</strong>
       {contacts
         .slice(0 + page * itemShow, itemShow + page * itemShow)
         .map((contact: Contact, idx: number) => {
@@ -32,6 +34,6 @@ export const ContactList = ({ contacts }: ContactListProps) => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
