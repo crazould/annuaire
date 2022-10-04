@@ -28,8 +28,7 @@ const ContactItem = ({
       setContacts(newContacts);
       alert("delete success");
     }
-  }, [data
-  ]);
+  }, [data]);
 
   const toggleFav = () => {
     const newContacts = [...contacts];
@@ -41,6 +40,12 @@ const ContactItem = ({
   };
 
   const bgColor = isFavorite ? "red" : "white";
+  const facStyle = css`
+    background-color: ${bgColor};
+    &:hover {
+      cursor: pointer;
+    }
+  `;
 
   return (
     <div
@@ -68,15 +73,7 @@ const ContactItem = ({
           display: "block",
         }}
       >
-        <button
-          onClick={toggleFav}
-          css={css`
-            background-color: ${bgColor};
-            &:hover {
-              cursor: pointer;
-            }
-          `}
-        >
+        <button onClick={toggleFav} css={facStyle}>
           favorite
         </button>
         <Link to={`/edit/${id}`}>edit</Link>

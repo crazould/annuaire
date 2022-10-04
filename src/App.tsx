@@ -50,7 +50,7 @@ function App() {
 
   return (
     <div>
-      <h1>Phone book</h1>
+      <h1>Annuaire</h1>
       <div style={{ marginBlock: "2rem" }}>
         <ContactsContext.Provider value={{ contacts, setContacts }}>
           <RouteList />
