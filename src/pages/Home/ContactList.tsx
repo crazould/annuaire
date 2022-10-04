@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { useState } from "react";
 import { Contact } from "../../App";
 import ContactItem from "./ContactItem";

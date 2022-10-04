@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { RouteList } from "./components/RouteList";
 import { ContactsContext } from "./context/ContactsContext";
 import useGetContactList from "./hooks/useGetContactList";
+import { ThemeProvider } from "@emotion/react";
+import { Header } from "./components/Header";
 export interface Phone {
   number: string;
 }
@@ -14,8 +16,25 @@ export interface Contact {
   isFavorite: boolean;
 }
 
+const themeLight = {
+  text: "#18181b",
+  bg: "#e4e4e7",
+  bgComponent: "#fafafa",
+  borderComponent: "1px solid #d4d4d8",
+  accent: "#2563eb",
+};
+
+const themeDark = {
+  text: "#fafafa",
+  bg: "#18181b",
+  bgComponent: "#27272a",
+  borderComponent: "1px solid #404040",
+  accent: "#2563eb",
+};
+
 function App() {
   const [contacts, setContacts] = useState<Contact[]>([]);
+  const [isDark, setIsDark] = useState(false);
   const { data } = useGetContactList();
 
   useEffect(() => {
@@ -38,25 +57,33 @@ function App() {
         localStorage.setItem("contacts", JSON.stringify(newContacts));
         setContacts(newContacts);
       }
-    } else {
+    } else if (!data) {
       const localContacts = localStorage.getItem("contacts");
       localContacts
         ? setContacts(JSON.parse(localContacts))
         : localStorage.setItem("contacts", JSON.stringify([]));
     }
+
+    const localTheme = localStorage.getItem("theme");
+    localTheme
+      ? setIsDark(JSON.parse(localTheme))
+      : localStorage.setItem("theme", JSON.stringify(isDark));
+
   }, [data]);
 
   if (!data) return <>...</>;
 
   return (
-    <div>
-      <h1>Annuaire</h1>
-      <div style={{ marginBlock: "2rem" }}>
-        <ContactsContext.Provider value={{ contacts, setContacts }}>
-          <RouteList />
-        </ContactsContext.Provider>
+    <ThemeProvider theme={isDark ? themeDark : themeLight}>
+      <Header isDark={isDark} setIsDark={setIsDark} />
+      <div>
+        <div style={{ marginBlock: "2rem" }}>
+          <ContactsContext.Provider value={{ contacts, setContacts }}>
+            <RouteList />
+          </ContactsContext.Provider>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
