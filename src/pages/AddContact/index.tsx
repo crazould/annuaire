@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { ContactsContext } from "../App";
-import useAddContactWithPhones from "../hooks/useAddContactWithPhones";
+import { ContactsContext } from "../../context/ContactsContext";
+import useAddContactWithPhones from "../../hooks/useAddContactWithPhones";
+import { checkName } from "../../utils/checkName";
 
 const AddContactPage = () => {
   const [firstName, setFirstName] = useState("");
@@ -45,18 +46,10 @@ const AddContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newName = `${firstName} ${lastName}`;
-    const isExists = contacts.find(
-      (c) => newName == `${c.first_name} ${c.last_name}`
-    );
-    if (isExists) {
-      alert("name already used");
-      return;
-    }
-    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    if (specialChars.test(newName)) {
-      alert("please don't use special characters");
-      return;
+    const msg = checkName(`${firstName} ${lastName}`, contacts)
+    if(msg){
+      alert(msg)
+      return
     }
     addContact();
   };

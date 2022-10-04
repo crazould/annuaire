@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import useDeleteContact from "../hooks/useDeleteContact";
-import { Contact, ContactsContext } from "../App";
+import useDeleteContact from "../../hooks/useDeleteContact";
+import { Contact } from "../../App";
+import { ContactsContext } from "../../context/ContactsContext";
 import { css } from "@emotion/react";
 
 const ContactItem = ({
@@ -25,10 +26,10 @@ const ContactItem = ({
       newContacts.splice(index, 1);
       localStorage.setItem("contacts", JSON.stringify(newContacts));
       setContacts(newContacts);
-
       alert("delete success");
     }
-  }, [data]);
+  }, [data
+  ]);
 
   const toggleFav = () => {
     const newContacts = [...contacts];

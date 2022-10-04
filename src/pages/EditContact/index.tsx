@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import EditPhoneForm from "../components/PhoneForm";
-import useEditContact from "../hooks/useEditContact";
-import { Contact, ContactsContext } from "../App";
-import ActionBtn from "../components/ActionBtn";
+import EditPhoneForm from "./PhoneForm";
+import ActionBtn from "../../components/ActionBtn";
+import { ContactsContext } from "../../context/ContactsContext";
+import useEditContact from "../../hooks/useEditContact";
+import { Contact } from "../../App";
+import { checkName } from "../../utils/checkName";
 
 const EditContactPage = () => {
   const { id } = useParams();
@@ -21,8 +23,8 @@ const EditContactPage = () => {
     if (data) {
       const newContacts = [...contacts];
       let idx = newContacts.findIndex((c: Contact) => c.id == id);
-      if (idx == -1) return;
-      newContacts[idx] = {...newContacts[idx], ...data.update_contact_by_pk};
+      if (idx === -1) return;
+      newContacts[idx] = { ...newContacts[idx], ...data.update_contact_by_pk };
       localStorage.setItem("contacts", JSON.stringify(newContacts));
       setContacts(newContacts);
       alert("Edit contact success");
@@ -39,18 +41,9 @@ const EditContactPage = () => {
 
   const saveContact = (e: React.FormEvent) => {
     e.preventDefault();
-
-    const newName = `${firstName} ${lastName}`;
-    const isExists = contacts.find(
-      (c) => newName == `${c.first_name} ${c.last_name}`
-    );
-    if (isExists) {
-      alert("name already used");
-      return;
-    }
-    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    if (specialChars.test(newName)) {
-      alert("please don't use special characters");
+    const msg = checkName(`${firstName} ${lastName}`, contacts);
+    if (msg) {
+      alert(msg);
       return;
     }
     editContact();

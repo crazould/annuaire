@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Contact } from "../App";
+import { Contact } from "../../App";
 import ContactItem from "./ContactItem";
 
 interface FavListProps {

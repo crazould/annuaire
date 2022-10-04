@@ -1,6 +1,7 @@
-import { useEffect, useState, createContext } from "react";
-import "./App.css";
+/** @jsxImportSource @emotion/react */
+import { useEffect, useState} from "react";
 import { RouteList } from "./components/RouteList";
+import { ContactsContext } from "./context/ContactsContext";
 import useGetContactList from "./hooks/useGetContactList";
 export interface Phone {
   number: string;
@@ -12,16 +13,6 @@ export interface Contact {
   phones: Phone[];
   isFavorite: boolean;
 }
-
-interface ContactsContextType {
-  contacts: Contact[];
-  setContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
-}
-
-export const ContactsContext = createContext<ContactsContextType>({
-  contacts: [],
-  setContacts: () => {},
-});
 
 function App() {
   const [contacts, setContacts] = useState<Contact[]>([]);

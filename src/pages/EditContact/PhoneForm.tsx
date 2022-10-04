@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
-import { ContactsContext, Contact } from "../App";
-import useAddNumberToContact from "../hooks/useAddNumberToContact";
-import ActionBtn from "./ActionBtn";
+import { Contact } from "../../App";
+import { ContactsContext } from "../../context/ContactsContext";
+import useAddNumberToContact from "../../hooks/useAddNumberToContact";
+import ActionBtn from "../../components/ActionBtn";
 import EditPhoneInput from "./EditPhoneInput";
 
 interface EditPhoneFormProps {
@@ -20,7 +21,10 @@ const EditPhoneForm = ({ contact }: EditPhoneFormProps) => {
       const newContacts = [...contacts];
       let idx = newContacts.findIndex((c: Contact) => c.id == id);
       if (idx == -1) return;
-      newContacts[idx] = {...newContacts[idx], ...data.insert_phone.returning[0]};
+      newContacts[idx] = {
+        ...newContacts[idx],
+        ...data.insert_phone.returning[0],
+      };
       localStorage.setItem("contacts", JSON.stringify(newContacts));
       setContacts(newContacts);
       alert("Add number to contact success");

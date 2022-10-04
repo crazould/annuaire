@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
-import { ContactList } from "../components/ContactList";
 import { Link } from "react-router-dom";
-import { Contact, ContactsContext } from "../App";
-import { FavList } from "../components/FavList";
+import { ContactList } from "./ContactList";
+import { FavList } from "./FavList";
+import { ContactsContext } from "../../context/ContactsContext";
+import { Contact } from "../../App";
 
-const ContactPage = () => {
+const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { contacts, setContacts } = useContext(ContactsContext);
 
@@ -26,8 +27,6 @@ const ContactPage = () => {
     setSearchQuery(newSearchQuery);
   };
 
-  
-
   return (
     <div style={{ marginInline: "auto", maxWidth: 512 }}>
       <h1>Contact List</h1>
@@ -40,10 +39,10 @@ const ContactPage = () => {
         />
         <Link to="/add">New contact</Link>
       </div>
-      <FavList contacts={contacts.filter(c => c.isFavorite)} />
-      <ContactList contacts={contacts.filter(c => !c.isFavorite)} />
+      <FavList contacts={contacts.filter((c) => c.isFavorite)} />
+      <ContactList contacts={contacts.filter((c) => !c.isFavorite)} />
     </div>
   );
 };
 
-export default ContactPage;
+export default HomePage;

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Contact, ContactsContext, Phone } from "../App";
-import useEditPhoneNumber from "../hooks/useEditPhoneNumber";
-import ActionBtn from "./ActionBtn";
+import { Contact } from "../../App";
+import { ContactsContext } from "../../context/ContactsContext";
+import useEditPhoneNumber from "../../hooks/useEditPhoneNumber";
+import ActionBtn from "../../components/ActionBtn";
 
 interface EditPhoneInputProps {
   id: string | undefined;
@@ -18,8 +19,8 @@ const EditPhoneInput = ({ id, number }: EditPhoneInputProps) => {
     if (data) {
       const newContacts = [...contacts];
       let idx = newContacts.findIndex((c: Contact) => c.id == id);
-      if (idx == -1) return;
-      newContacts[idx] = {...newContacts[idx], ...data.update_phone_by_pk};
+      if (idx === -1) return;
+      newContacts[idx] = { ...newContacts[idx], ...data.update_phone_by_pk };
       localStorage.setItem("contacts", JSON.stringify(newContacts));
       setContacts(newContacts);
       alert("Edit phone number success");

@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
-import ContactPage from "../pages/ContactPage";
-import AddContactPage from "../pages/AddContactPage";
-import EditContactPage from "../pages/EditContactPage";
+import ContactPage from "../pages/Home";
+import AddContactPage from "../pages/AddContact";
+import EditContactPage from "../pages/EditContact";
 
 export const RouteList = () => {
   return useRoutes([
