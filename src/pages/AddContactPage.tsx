@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ContactsContext } from "../App";
 import useAddContactWithPhones from "../hooks/useAddContactWithPhones";
 
 const AddContactPage = () => {
-  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [numbers, setNumbers] = useState([""]);
@@ -17,9 +16,13 @@ const AddContactPage = () => {
 
   useEffect(() => {
     if (!data) return;
-    setContacts([...contacts, data.insert_contact.returning[0]]);
+    const newContacts = [...contacts, data.insert_contact.returning[0]]
+    localStorage.setItem("contacts", JSON.stringify(newContacts));
+    setContacts(newContacts);
     alert("Add contact success");
-    navigate("/");
+    setFirstName("")
+    setLastName("")
+    setNumbers([""])
   }, [data]);
 
   const changeFirstName = (e: React.ChangeEvent) => {
@@ -97,7 +100,7 @@ const AddContactPage = () => {
         </div>
         <div>
           <input type="submit" value="save" />
-          <Link to="/">cancel</Link>
+          <Link to="/">back</Link>
         </div>
       </form>
     </>

@@ -1,7 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useDeleteContact from "../hooks/useDeleteContact";
 import { Contact, ContactsContext } from "../App";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 
 const ContactItem = ({
   id,
@@ -21,10 +23,23 @@ const ContactItem = ({
         (c) => c.id == data.delete_contact_by_pk.id
       );
       newContacts.splice(index, 1);
+      localStorage.setItem("contacts", JSON.stringify(newContacts));
       setContacts(newContacts);
+
       alert("delete success");
     }
   }, [data]);
+
+  const toggleFav = () => {
+    const newContacts = [...contacts];
+    let idx = newContacts.findIndex((c: Contact) => c.id == id);
+    if (idx == -1) return;
+    newContacts[idx].isFavorite = !newContacts[idx].isFavorite;
+    localStorage.setItem("contacts", JSON.stringify(newContacts));
+    setContacts(newContacts);
+  };
+
+  const bgColor = isFavorite ? "red" : "white";
 
   return (
     <div
@@ -52,7 +67,17 @@ const ContactItem = ({
           display: "block",
         }}
       >
-        <button>favorite</button>
+        <button
+          onClick={toggleFav}
+          css={css`
+            background-color: ${bgColor};
+            &:hover {
+              cursor: pointer;
+            }
+          `}
+        >
+          favorite
+        </button>
         <Link to={`/edit/${id}`}>edit</Link>
         <button onClick={handleDelete}>delete</button>
       </div>

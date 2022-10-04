@@ -5,19 +5,24 @@ import ActionBtn from "./ActionBtn";
 import EditPhoneInput from "./EditPhoneInput";
 
 interface EditPhoneFormProps {
-  contact: Contact
+  contact: Contact;
 }
 
 const EditPhoneForm = ({ contact }: EditPhoneFormProps) => {
   const { contacts, setContacts } = useContext(ContactsContext);
-  const id = contact.id
+  const id = contact.id;
   const [addMode, setAddMode] = useState(false);
   const [newNumber, setNewNumber] = useState("");
   const [addNumber, { data }] = useAddNumberToContact(id, newNumber);
 
   useEffect(() => {
     if (data) {
-      setContacts([...contacts, data.insert_phone.returning[0].id]);
+      const newContacts = [...contacts];
+      let idx = newContacts.findIndex((c: Contact) => c.id == id);
+      if (idx == -1) return;
+      newContacts[idx] = {...newContacts[idx], ...data.insert_phone.returning[0]};
+      localStorage.setItem("contacts", JSON.stringify(newContacts));
+      setContacts(newContacts);
       alert("Add number to contact success");
     }
   }, [data]);
@@ -32,8 +37,7 @@ const EditPhoneForm = ({ contact }: EditPhoneFormProps) => {
     setNewNumber((e.target as HTMLInputElement).value);
   };
 
-
-  const phonesInput = contact.phones.map(({number}, idx) => {
+  const phonesInput = contact.phones.map(({ number }, idx) => {
     const props = { number, id };
     return <EditPhoneInput key={idx} {...props} />;
   });

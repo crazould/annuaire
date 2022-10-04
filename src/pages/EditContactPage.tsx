@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import EditPhoneForm from "../components/PhoneForm";
 import useEditContact from "../hooks/useEditContact";
-import { ContactsContext } from "../App";
+import { Contact, ContactsContext } from "../App";
 import ActionBtn from "../components/ActionBtn";
 
 const EditContactPage = () => {
@@ -19,7 +19,12 @@ const EditContactPage = () => {
 
   useEffect(() => {
     if (data) {
-      setContacts([...contacts, data.update_contact_by_pk]);
+      const newContacts = [...contacts];
+      let idx = newContacts.findIndex((c: Contact) => c.id == id);
+      if (idx == -1) return;
+      newContacts[idx] = {...newContacts[idx], ...data.update_contact_by_pk};
+      localStorage.setItem("contacts", JSON.stringify(newContacts));
+      setContacts(newContacts);
       alert("Edit contact success");
     }
   }, [data]);

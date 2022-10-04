@@ -13,31 +13,45 @@ export interface Contact {
   isFavorite: boolean;
 }
 
-interface ContactsContextType{
-  contacts: Contact[],
-  setContacts: React.Dispatch<React.SetStateAction<Contact[]>>
+interface ContactsContextType {
+  contacts: Contact[];
+  setContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
 }
 
 export const ContactsContext = createContext<ContactsContextType>({
-  contacts:[], 
-  setContacts: () => {}
+  contacts: [],
+  setContacts: () => {},
 });
 
 function App() {
-
   const [contacts, setContacts] = useState<Contact[]>([]);
   const { data } = useGetContactList();
 
   useEffect(() => {
     if (data) {
-      console.log(data.contact);
-      setContacts(data.contact);
-      localStorage.setItem("contacts", JSON.stringify(data.contact));
+      const localContacts = localStorage.getItem("contacts");
+      let newContacts = data.contact;
+      if (localContacts) {
+        const parsedContacts = JSON.parse(localContacts);
+        newContacts = newContacts.map((c: Contact) => {
+          let newContact = c;
+          const oldContact = parsedContacts.find(
+            (oc: Contact) => oc.id == c.id
+          );
+          newContact = oldContact
+            ? { ...newContact, isFavorite: oldContact.isFavorite }
+            : { ...newContact, isFavorite: false };
+
+          return newContact;
+        });
+        localStorage.setItem("contacts", JSON.stringify(newContacts));
+        setContacts(newContacts);
+      }
     } else {
       const localContacts = localStorage.getItem("contacts");
       localContacts
         ? setContacts(JSON.parse(localContacts))
-        : localStorage.setItem("contacts", JSON.stringify(contacts));
+        : localStorage.setItem("contacts", JSON.stringify([]));
     }
   }, [data]);
 
@@ -46,9 +60,9 @@ function App() {
   return (
     <div>
       <h1>Phone book</h1>
-      <div style={{marginBlock: '2rem'}}>
-        <ContactsContext.Provider value={{contacts, setContacts}}>
-          <RouteList/>
+      <div style={{ marginBlock: "2rem" }}>
+        <ContactsContext.Provider value={{ contacts, setContacts }}>
+          <RouteList />
         </ContactsContext.Provider>
       </div>
     </div>
