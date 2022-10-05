@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
+import { IconPlus } from "@tabler/icons";
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContactsContext } from "../../context/ContactsContext";
@@ -58,17 +59,6 @@ const AddContactPage = () => {
     addContact();
   };
 
-  const phonesInput = numbers.map((number, idx) => (
-    <input
-      onChange={(e) => changePhones(e, idx)}
-      placeholder="phone number"
-      key={idx}
-      type="tel"
-      value={number}
-      required
-    />
-  ));
-
   const formTitleStyle = css`
     font-weight: 300;
     font-size: 2rem;
@@ -103,13 +93,13 @@ const AddContactPage = () => {
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   `;
 
-  const btnStyle = css`
+  const btnTextStyle = css`
     color: #fafafa;
     font-size: 1rem;
     background-color: ${theme.accent};
     border: ${theme.border};
     padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
+    margin-right: 1rem;
     cursor: pointer;
     border: ${theme.border};
     border-radius: 9999px;
@@ -118,6 +108,33 @@ const AddContactPage = () => {
       background-color: ${theme.accentHover};
     }
   `;
+
+  const btnStyle = css`
+    color: #fafafa;
+    background-color: ${theme.accent};
+    border: ${theme.border};
+    padding: 0.25rem;
+    cursor: pointer;
+    border: ${theme.border};
+    border-radius: 0.5rem;
+    margin-left: 0.25rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    :hover {
+      background-color: ${theme.accentHover};
+    }
+  `;
+
+  const phonesInput = numbers.map((number, idx) => (
+    <input
+      onChange={(e) => changePhones(e, idx)}
+      placeholder="phone number"
+      key={idx}
+      type="tel"
+      value={number}
+      required
+      css={inputStyle}
+    />
+  ));
 
   return (
     <div css={pageStyle}>
@@ -144,19 +161,17 @@ const AddContactPage = () => {
               required
             />
           </div>
-          <div>
+          <div css={css`margin-bottom: 1rem;`}>
             {phonesInput}
-            <button onClick={addPhoneInput}>+</button>
+            <button type="button" onClick={addPhoneInput} css={btnStyle}>
+              <IconPlus size={20} />
+            </button>
           </div>
-          <div
-            css={css`
-              text-align: right;
-            `}
-          >
-            <button css={btnStyle} type="submit">
+          <div css={css``}>
+            <button css={btnTextStyle} type="submit">
               save
             </button>
-            <button css={btnStyle} onClick={() => nav("/")}>
+            <button css={btnTextStyle} onClick={() => nav("/")}>
               back
             </button>
           </div>
