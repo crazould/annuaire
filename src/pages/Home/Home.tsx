@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContactList } from "./ContactList";
@@ -9,10 +9,11 @@ import { Contact } from "../../App";
 import { IconPlus } from "@tabler/icons";
 import PageLayout from "../../components/PageLayout";
 import Input from "../../components/Input";
-import IconBtn from "../../components/IconBtn";
+import Button from "../../components/Button";
 
 const Home = () => {
   const nav = useNavigate();
+  const theme = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
   const { contacts, setContacts } = useContext(ContactsContext);
 
@@ -34,6 +35,15 @@ const Home = () => {
     setSearchQuery(newSearchQuery);
   };
 
+  const addBtnStyle = css`
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 5;
+    border-radius: 9999px;
+    padding: 1rem;
+  `;
+
   return (
     <PageLayout>
       <div
@@ -47,9 +57,13 @@ const Home = () => {
           value={searchQuery}
           placeholder="search..."
         />
-        <IconBtn onClick={() => nav("/add")} type="button">
-          <IconPlus size={20} />
-        </IconBtn>
+        <Button
+          styleProp={addBtnStyle}
+          onClick={() => nav("/add")}
+          type="button"
+        >
+          <IconPlus size={20} stroke={3} />
+        </Button>
       </div>
       <FavList contacts={contacts.filter((c) => c.isFavorite)} />
       <ContactList contacts={contacts.filter((c) => !c.isFavorite)} />

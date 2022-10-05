@@ -11,7 +11,7 @@ const Button = ({
   type: "button" | "submit" | "reset" | undefined;
   onClick?: (e: React.FormEvent) => void;
   children: React.ReactNode;
-  styleProp: SerializedStyles;
+  styleProp?: SerializedStyles;
 }) => {
   const theme = useTheme();
 

@@ -108,7 +108,7 @@ const ContactItem = ({
           ""
         )}
       </div>
-      <div>
+      <div css={css`min-width:102px;`}>
         <IconBtn type="button" onClick={toggleFav}>
           <IconStar size={20} />
         </IconBtn>

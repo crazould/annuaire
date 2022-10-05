@@ -12,7 +12,6 @@ const IconBtn = ({
   onClick?: (e: React.FormEvent) => void;
   children: React.ReactNode;
 }) => {
-  
   const iconBtnStyle = css`
     padding: 0.25rem;
     margin-left: 0.25rem;
