@@ -5,7 +5,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ContactsContext from "../../context/ContactsContext";
 import useAddContactWithPhones from "../../hooks/useAddContactWithPhones";
-import { formTitleStyle } from "../../styles/components";
+import { formStyle, formTitleStyle } from "../../styles/components";
 import PageLayout from "../../components/PageLayout";
 import checkName from "../../utils/checkName";
 import Input from "../../components/Input";
@@ -65,35 +65,41 @@ const AddContact = () => {
   };
 
   const phonesInput = numbers.map((number, idx) => (
-    <Input
-      onChange={(e) => changePhones(e, idx)}
-      placeholder="phone number"
-      key={idx}
-      type="tel"
-      value={number}
-      required
-    />
+    <div className="input-group">
+      <label htmlFor={`number-${idx}`}>{`no ${idx+1}`}</label>
+      <Input
+        id={`number-${idx}`}
+        onChange={(e) => changePhones(e, idx)}
+        placeholder="phone number"
+        key={idx}
+        type="tel"
+        value={number}
+        required
+      />
+    </div>
   ));
 
   return (
     <PageLayout>
       <Card>
-        <h1 css={formTitleStyle}>Add Contact Form</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
+        <form onSubmit={handleSubmit} css={formStyle}>
+          <h1 >Add Contact Form</h1>
+          <div className="input-group">
+            <label htmlFor="firstName">first name</label>
             <Input
               type="text"
               onChange={changeFirstName}
-              placeholder="first name"
+              placeholder="ex: John"
               value={firstName}
               required
             />
           </div>
-          <div>
+          <div className="input-group">
+            <label htmlFor="firstName">last name</label>
             <Input
               type="text"
               onChange={changeLastName}
-              placeholder="last name"
+              placeholder="ex: Doe"
               value={lastName}
               required
             />

@@ -8,6 +8,7 @@ interface inputProps {
   required?: boolean;
   onChange: (e: React.ChangeEvent) => void;
   disabled?: boolean;
+  id?: string;
 }
 
 const Input = ({
@@ -17,6 +18,7 @@ const Input = ({
   required,
   onChange,
   disabled,
+  id,
 }: inputProps) => {
   const theme = useTheme();
 
@@ -24,16 +26,17 @@ const Input = ({
     font-family: "Futura Md BT", sans-serif;
     border-radius: 0.5rem;
     border: ${theme.border};
-    padding: 0.75rem;
+    padding: 0.5rem;
     width: 100%;
     font-size: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     display: block;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   `;
 
   return (
     <input
+      id={id}
       css={inputStyle}
       type={type}
       onChange={onChange}
