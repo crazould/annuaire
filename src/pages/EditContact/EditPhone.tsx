@@ -1,19 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
 import React, { useEffect, useState, useContext } from "react";
 import { Contact } from "../../App";
 import ContactsContext from "../../context/ContactsContext";
 import useAddNumberToContact from "../../hooks/useAddNumberToContact";
-import ActionBtn from "../../components/ActionBtn";
-import EditPhoneInput from "./EditPhoneInput";
+import ActionBtn from "../../components/ActionBtnGroup";
+import EditPhoneInput from "./PhoneInput";
 import Input from "../../components/Input";
 
-interface EditPhoneProps {
-  contact: Contact;
-}
 
-const EditPhone = ({ contact }: EditPhoneProps) => {
-  const theme = useTheme();
+const EditPhone = ({ contact }: { contact: Contact }) => {
   const { contacts, setContacts } = useContext(ContactsContext);
   const id = contact.id;
   const [addMode, setAddMode] = useState(false);

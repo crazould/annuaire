@@ -1,17 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
-
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useDeleteContact from "../../hooks/useDeleteContact";
 import { Contact } from "../../App";
 import ContactsContext from "../../context/ContactsContext";
-import {
-  IconStar,
-  IconTrash,
-  IconEdit,
-  IconUserCircle,
-} from "@tabler/icons";
+import { IconStar, IconTrash, IconEdit, IconUserCircle } from "@tabler/icons";
+import IconBtn from "../../components/IconBtn";
 
 const ContactItem = ({
   id,
@@ -69,20 +64,6 @@ const ContactItem = ({
     font-weight: bold;
   `;
 
-  const btnStyle = css`
-    color: #fafafa;
-    background-color: ${theme.accent};
-    border: ${theme.border};
-    padding: 0.25rem;
-    cursor: pointer;
-    border: ${theme.border};
-    border-radius: 4px;
-    margin-left: 0.25rem;
-    :hover {
-      background-color: ${theme.accentHover};
-    }
-  `;
-
   return (
     <div key={id} css={cardStyle}>
       <div
@@ -98,10 +79,7 @@ const ContactItem = ({
             color: ${theme.accent};
           `}
         />
-        <div
-          css={css`
-          `}
-        >
+        <div css={css``}>
           <div css={cardTitleStyle}>{`${first_name} ${last_name}`}</div>
           <div>
             <div>{phones[0].number}</div>
@@ -110,15 +88,15 @@ const ContactItem = ({
         </div>
       </div>
       <div>
-        <button onClick={toggleFav} css={btnStyle}>
+        <IconBtn type="button" onClick={toggleFav}>
           <IconStar size={20} />
-        </button>
-        <button css={btnStyle} onClick={() => nav(`/edit/${id}`)}>
+        </IconBtn>
+        <IconBtn type="button" onClick={() => nav(`/edit/${id}`)}>
           <IconEdit size={20} />
-        </button>
-        <button css={btnStyle} onClick={handleDelete}>
+        </IconBtn>
+        <IconBtn type="button" onClick={handleDelete}>
           <IconTrash size={20} />
-        </button>
+        </IconBtn>
       </div>
     </div>
   );

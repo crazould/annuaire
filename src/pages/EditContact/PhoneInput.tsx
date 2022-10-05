@@ -3,15 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { Contact } from "../../App";
 import ContactsContext from "../../context/ContactsContext";
 import useEditPhoneNumber from "../../hooks/useEditPhoneNumber";
-import ActionBtn from "../../components/ActionBtn";
+import ActionBtn from "../../components/ActionBtnGroup";
 import Input from "../../components/Input";
 
-interface EditPhoneInputProps {
-  id: number;
-  number: string;
-}
-
-const EditPhoneInput = ({ id, number }: EditPhoneInputProps) => {
+const PhoneInput = ({ id, number }: { id: number; number: string }) => {
   const { contacts, setContacts } = useContext(ContactsContext);
   const [editMode, setEditMode] = useState(false);
   const [newNumber, setNewNumber] = useState(number);
@@ -55,4 +50,4 @@ const EditPhoneInput = ({ id, number }: EditPhoneInputProps) => {
   );
 };
 
-export default EditPhoneInput;
+export default PhoneInput;

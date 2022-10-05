@@ -2,8 +2,8 @@
 import { css, useTheme } from "@emotion/react";
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import PhoneForm from "./PhoneForm";
-import ActionBtn from "../../components/ActionBtn";
+import PhoneForm from "./EditPhone";
+import ActionBtn from "../../components/ActionBtnGroup";
 import ContactsContext from "../../context/ContactsContext";
 import useEditContact from "../../hooks/useEditContact";
 import { Contact } from "../../App";
@@ -11,6 +11,7 @@ import checkName from "../../utils/checkName";
 import PageLayout from "../../components/PageLayout";
 import { formTitleStyle } from "../../styles/components";
 import Input from "../../components/Input";
+import TextBtn from "../../components/TextBtn";
 
 const EditContact = () => {
   const nav = useNavigate();
@@ -68,22 +69,6 @@ const EditContact = () => {
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   `;
 
-  const btnTextStyle = css`
-    color: #fafafa;
-    font-size: 1rem;
-    background-color: ${theme.accent};
-    border: ${theme.border};
-    padding: 0.5rem 1rem;
-    margin-right: 1rem;
-    cursor: pointer;
-    border: ${theme.border};
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    :hover {
-      background-color: ${theme.accentHover};
-    }
-  `;
-
   return (
     <PageLayout>
       <div css={cardStyle}>
@@ -113,9 +98,9 @@ const EditContact = () => {
             <ActionBtn mode={editMode} setMode={setEditMode} />
           </form>
           {contact ? <PhoneForm contact={contact} /> : ""}
-          <button css={btnTextStyle} type="button" onClick={() => nav("/")}>
+          <TextBtn type="button" onClick={() => nav("/")}>
             back
-          </button>
+          </TextBtn>
         </div>
       </div>
     </PageLayout>

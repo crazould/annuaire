@@ -9,6 +9,8 @@ import { formTitleStyle } from "../../styles/components";
 import PageLayout from "../../components/PageLayout";
 import checkName from "../../utils/checkName";
 import Input from "../../components/Input";
+import TextBtn from "../../components/TextBtn";
+import IconBtn from "../../components/IconBtn";
 
 const AddContact = () => {
   const nav = useNavigate();
@@ -72,37 +74,6 @@ const AddContact = () => {
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   `;
 
-  const btnTextStyle = css`
-    color: #fafafa;
-    font-size: 1rem;
-    background-color: ${theme.accent};
-    border: ${theme.border};
-    padding: 0.5rem 1rem;
-    margin-right: 1rem;
-    cursor: pointer;
-    border: ${theme.border};
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    :hover {
-      background-color: ${theme.accentHover};
-    }
-  `;
-
-  const btnStyle = css`
-    color: #fafafa;
-    background-color: ${theme.accent};
-    border: ${theme.border};
-    padding: 0.25rem;
-    cursor: pointer;
-    border: ${theme.border};
-    border-radius: 0.5rem;
-    margin-left: 0.25rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    :hover {
-      background-color: ${theme.accentHover};
-    }
-  `;
-
   const phonesInput = numbers.map((number, idx) => (
     <Input
       onChange={(e) => changePhones(e, idx)}
@@ -143,17 +114,15 @@ const AddContact = () => {
             `}
           >
             {phonesInput}
-            <button type="button" onClick={addPhoneInput} css={btnStyle}>
+            <IconBtn type="button" onClick={addPhoneInput}>
               <IconPlus size={20} />
-            </button>
+            </IconBtn>
           </div>
-          <div css={css``}>
-            <button css={btnTextStyle} type="submit">
-              save
-            </button>
-            <button css={btnTextStyle} onClick={() => nav("/")}>
+          <div>
+            <TextBtn type="submit">save</TextBtn>
+            <TextBtn type="button" onClick={() => nav("/")}>
               back
-            </button>
+            </TextBtn>
           </div>
         </form>
       </div>
