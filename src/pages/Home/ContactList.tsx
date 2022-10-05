@@ -33,7 +33,7 @@ export const ContactList = ({ contacts }: ContactListProps) => {
       cursor: pointer;
       border: ${theme.border};
       padding: 0.25rem 0.5rem;
-      border-radius: 9999px;
+      border-radius: 0.5rem;
       box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
         0 2px 4px -2px rgb(0 0 0 / 0.1);
     }

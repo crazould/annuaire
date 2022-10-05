@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
-import EditPhoneForm from "./PhoneForm";
+import { useNavigate, useParams } from "react-router-dom";
+import PhoneForm from "./PhoneForm";
 import ActionBtn from "../../components/ActionBtn";
 import { ContactsContext } from "../../context/ContactsContext";
 import useEditContact from "../../hooks/useEditContact";
@@ -10,6 +10,7 @@ import { Contact } from "../../App";
 import { checkName } from "../../utils/checkName";
 
 const EditContactPage = () => {
+  const nav = useNavigate();
   const theme = useTheme();
   const { id } = useParams();
   const { contacts, setContacts } = useContext(ContactsContext);
@@ -53,37 +54,95 @@ const EditContactPage = () => {
     setEditMode(!editMode);
   };
 
+  const formTitleStyle = css`
+    font-weight: 300;
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 1rem;
+  `;
+
+  const inputStyle = css`
+    font-family: "Futura Md BT", sans-serif;
+    border-radius: 0.5rem;
+    border: ${theme.border};
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  `;
+
+  const pageStyle = css`
+    padding-inline: 1rem;
+    margin: auto;
+    max-width: 1024px;
+  `;
+
+  const cardStyle = css`
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    background: ${theme.bgComponent};
+    color: ${theme.text};
+    border-radius: 0.5rem;
+    border: ${theme.border};
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  `;
+
+  const btnTextStyle = css`
+    color: #fafafa;
+    font-size: 1rem;
+    background-color: ${theme.accent};
+    border: ${theme.border};
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    border: ${theme.border};
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    :hover {
+      background-color: ${theme.accentHover};
+    }
+  `;
+
+
+
   return (
-    <>
-      <h1>Edit Contact Form</h1>
-      <div>
-        <form onSubmit={saveContact}>
-          <div>
-            <input
-              type="text"
-              onChange={changeFirstName}
-              placeholder="first name"
-              required
-              value={firstName}
-              disabled={!editMode}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              onChange={changeLastName}
-              placeholder="last name"
-              required
-              value={lastName}
-              disabled={!editMode}
-            />
-          </div>
-          <ActionBtn mode={editMode} setMode={setEditMode} />
-        </form>
-        {contact ? <EditPhoneForm contact={contact} /> : ""}
-        <Link to="/">back</Link>
+    <div css={pageStyle}>
+      <div css={cardStyle}>
+        <h1 css={formTitleStyle}>Edit Contact Form</h1>
+        <div>
+          <form onSubmit={saveContact}>
+            <div>
+              <input
+                css={inputStyle}
+                type="text"
+                onChange={changeFirstName}
+                placeholder="first name"
+                required
+                value={firstName}
+                disabled={!editMode}
+              />
+            </div>
+            <div>
+              <input
+                css={inputStyle}
+                type="text"
+                onChange={changeLastName}
+                placeholder="last name"
+                required
+                value={lastName}
+                disabled={!editMode}
+              />
+            </div>
+            <ActionBtn mode={editMode} setMode={setEditMode} />
+          </form>
+          {contact ? <PhoneForm contact={contact} /> : ""}
+          <button css={btnTextStyle} type="button" onClick={() => nav("/")}>
+            back
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

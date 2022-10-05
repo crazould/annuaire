@@ -11,7 +11,6 @@ import {
   IconTrash,
   IconEdit,
   IconUserCircle,
-  IconThermometer,
 } from "@tabler/icons";
 
 const ContactItem = ({
@@ -101,7 +100,6 @@ const ContactItem = ({
         />
         <div
           css={css`
-            max-width: 125px;
           `}
         >
           <div css={cardTitleStyle}>{`${first_name} ${last_name}`}</div>

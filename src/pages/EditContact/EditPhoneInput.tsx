@@ -30,6 +30,17 @@ const EditPhoneInput = ({ id, number }: EditPhoneInputProps) => {
     }
   }, [data]);
 
+  const inputStyle = css`
+    font-family: "Futura Md BT", sans-serif;
+    border-radius: 0.5rem;
+    border: ${theme.border};
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  `;
+
   const changePhones = (e: React.ChangeEvent) => {
     setNewNumber((e.target as HTMLInputElement).value);
   };
@@ -41,9 +52,10 @@ const EditPhoneInput = ({ id, number }: EditPhoneInputProps) => {
   };
 
   return (
-    <div>
+    <div >
       <form onSubmit={savePhone}>
         <input
+          css={inputStyle}
           onChange={changePhones}
           placeholder="phone number"
           type="tel"

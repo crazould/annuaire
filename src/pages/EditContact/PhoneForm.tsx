@@ -7,11 +7,11 @@ import useAddNumberToContact from "../../hooks/useAddNumberToContact";
 import ActionBtn from "../../components/ActionBtn";
 import EditPhoneInput from "./EditPhoneInput";
 
-interface EditPhoneFormProps {
+interface PhoneFormProps {
   contact: Contact;
 }
 
-const EditPhoneForm = ({ contact }: EditPhoneFormProps) => {
+const PhoneForm = ({ contact }: PhoneFormProps) => {
   const theme = useTheme();
   const { contacts, setContacts } = useContext(ContactsContext);
   const id = contact.id;
@@ -49,8 +49,25 @@ const EditPhoneForm = ({ contact }: EditPhoneFormProps) => {
     return <EditPhoneInput key={idx} {...props} />;
   });
 
+  const inputStyle = css`
+    font-family: "Futura Md BT", sans-serif;
+    border-radius: 0.5rem;
+    border: ${theme.border};
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  `;
+
   const newNumberInput = addMode ? (
-    <input type="text" value={newNumber} onChange={changeNewNumber} />
+    <input
+      css={inputStyle}
+      placeholder="new number"
+      type="tel"
+      value={newNumber}
+      onChange={changeNewNumber}
+    />
   ) : (
     ""
   );
@@ -66,4 +83,4 @@ const EditPhoneForm = ({ contact }: EditPhoneFormProps) => {
   );
 };
 
-export default EditPhoneForm;
+export default PhoneForm;
