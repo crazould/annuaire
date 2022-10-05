@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
+import { css } from "@emotion/react";
 import { IconPlus } from "@tabler/icons";
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +11,10 @@ import checkName from "../../utils/checkName";
 import Input from "../../components/Input";
 import TextBtn from "../../components/TextBtn";
 import IconBtn from "../../components/IconBtn";
+import Card from "../../components/Card";
 
 const AddContact = () => {
   const nav = useNavigate();
-  const theme = useTheme();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [numbers, setNumbers] = useState([""]);
@@ -64,16 +64,6 @@ const AddContact = () => {
     setNumbers([""]);
   };
 
-  const cardStyle = css`
-    margin-bottom: 0.75rem;
-    padding: 1rem;
-    background: ${theme.bgComponent};
-    color: ${theme.text};
-    border-radius: 0.5rem;
-    border: ${theme.border};
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  `;
-
   const phonesInput = numbers.map((number, idx) => (
     <Input
       onChange={(e) => changePhones(e, idx)}
@@ -87,7 +77,7 @@ const AddContact = () => {
 
   return (
     <PageLayout>
-      <div css={cardStyle}>
+      <Card>
         <h1 css={formTitleStyle}>Add Contact Form</h1>
         <form onSubmit={handleSubmit}>
           <div>
@@ -125,7 +115,7 @@ const AddContact = () => {
             </TextBtn>
           </div>
         </form>
-      </div>
+      </Card>
     </PageLayout>
   );
 };

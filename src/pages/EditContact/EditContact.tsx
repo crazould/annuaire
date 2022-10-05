@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PhoneForm from "./EditPhone";
@@ -12,10 +11,10 @@ import PageLayout from "../../components/PageLayout";
 import { formTitleStyle } from "../../styles/components";
 import Input from "../../components/Input";
 import TextBtn from "../../components/TextBtn";
+import Card from "../../components/Card";
 
 const EditContact = () => {
   const nav = useNavigate();
-  const theme = useTheme();
   const { contact_id } = useParams();
   const id = contact_id ? parseInt(contact_id) : -1;
   const { contacts, setContacts } = useContext(ContactsContext);
@@ -59,19 +58,9 @@ const EditContact = () => {
     setEditMode(!editMode);
   };
 
-  const cardStyle = css`
-    margin-bottom: 0.75rem;
-    padding: 1rem;
-    background: ${theme.bgComponent};
-    color: ${theme.text};
-    border-radius: 0.5rem;
-    border: ${theme.border};
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  `;
-
   return (
     <PageLayout>
-      <div css={cardStyle}>
+      <Card>
         <h1 css={formTitleStyle}>Edit Contact Form</h1>
         <div>
           <form onSubmit={saveContact}>
@@ -102,7 +91,7 @@ const EditContact = () => {
             back
           </TextBtn>
         </div>
-      </div>
+      </Card>
     </PageLayout>
   );
 };

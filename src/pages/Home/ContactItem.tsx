@@ -7,6 +7,7 @@ import { Contact } from "../../App";
 import ContactsContext from "../../context/ContactsContext";
 import { IconStar, IconTrash, IconEdit, IconUserCircle } from "@tabler/icons";
 import IconBtn from "../../components/IconBtn";
+import Card from "../../components/Card";
 
 const ContactItem = ({
   id,
@@ -43,29 +44,19 @@ const ContactItem = ({
     setContacts(newContacts);
   };
 
-  const cardStyle = css`
+  const itemStyle = css`
     margin-bottom: 0.75rem;
-    padding: 1rem 0.5rem;
-    background: ${theme.bgComponent};
-    color: ${theme.text};
-    border-radius: 0.5rem;
-    border: ${theme.border};
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: 3rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     @media (max-width: 768px) {
       font-size: 0.825rem;
     }
   `;
 
-  const cardTitleStyle = css`
-    font-weight: bold;
-  `;
-
   return (
-    <div key={id} css={cardStyle}>
+    <Card styleProp={itemStyle}>
       <div
         css={css`
           display: flex;
@@ -79,8 +70,12 @@ const ContactItem = ({
             color: ${theme.accent};
           `}
         />
-        <div css={css``}>
-          <div css={cardTitleStyle}>{`${first_name} ${last_name}`}</div>
+        <div>
+          <div
+            css={css`
+              font-weight: bold;
+            `}
+          >{`${first_name} ${last_name}`}</div>
           <div>
             <div>{phones[0].number}</div>
             <div>{phones.length > 1 ? ` +${phones.length - 1}` : ""}</div>
@@ -98,7 +93,7 @@ const ContactItem = ({
           <IconTrash size={20} />
         </IconBtn>
       </div>
-    </div>
+    </Card>
   );
 };
 
