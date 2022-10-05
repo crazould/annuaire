@@ -8,7 +8,7 @@ import ContactsContext from "../../context/ContactsContext";
 import useEditContact from "../../hooks/useEditContact";
 import { Contact } from "../../App";
 import checkName from "../../utils/checkName";
-import { pageStyle } from "../../styles/pages";
+import PageLayout from "../../components/PageLayout";
 import { formTitleStyle } from "../../styles/components";
 
 const EditContact = () => {
@@ -16,7 +16,7 @@ const EditContact = () => {
   const theme = useTheme();
   const { id } = useParams();
   const { contacts, setContacts } = useContext(ContactsContext);
-  const contact = contacts.find((c) => c.id == id);
+  const contact = contacts.find((c) => c.id === id);
   const { first_name, last_name } = contact
     ? contact
     : { first_name: "", last_name: "" };
@@ -28,7 +28,7 @@ const EditContact = () => {
   useEffect(() => {
     if (data) {
       const newContacts = [...contacts];
-      let idx = newContacts.findIndex((c: Contact) => c.id == id);
+      let idx = newContacts.findIndex((c: Contact) => c.id === id);
       if (idx === -1) return;
       newContacts[idx] = { ...newContacts[idx], ...data.update_contact_by_pk };
       localStorage.setItem("contacts", JSON.stringify(newContacts));
@@ -55,8 +55,6 @@ const EditContact = () => {
     editContact();
     setEditMode(!editMode);
   };
-
-
 
   const inputStyle = css`
     font-family: "Futura Md BT", sans-serif;
@@ -96,7 +94,7 @@ const EditContact = () => {
   `;
 
   return (
-    <div css={pageStyle}>
+    <PageLayout>
       <div css={cardStyle}>
         <h1 css={formTitleStyle}>Edit Contact Form</h1>
         <div>
@@ -131,7 +129,7 @@ const EditContact = () => {
           </button>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

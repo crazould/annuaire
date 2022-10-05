@@ -7,7 +7,7 @@ import { FavList } from "./FavList";
 import ContactsContext from "../../context/ContactsContext";
 import { Contact } from "../../App";
 import { IconPlus } from "@tabler/icons";
-import { pageStyle } from "../../styles/pages";
+import PageLayout from "../../components/PageLayout";
 
 const Home = () => {
   const nav = useNavigate();
@@ -59,7 +59,7 @@ const Home = () => {
   `;
 
   return (
-    <div css={pageStyle}>
+    <PageLayout>
       <div
         css={css`
           display: flex;
@@ -79,7 +79,7 @@ const Home = () => {
       </div>
       <FavList contacts={contacts.filter((c) => c.isFavorite)} />
       <ContactList contacts={contacts.filter((c) => !c.isFavorite)} />
-    </div>
+    </PageLayout>
   );
 };
 

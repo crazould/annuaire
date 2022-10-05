@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import ContactsContext from "../../context/ContactsContext";
 import useAddContactWithPhones from "../../hooks/useAddContactWithPhones";
 import { formTitleStyle } from "../../styles/components";
-import { pageStyle } from "../../styles/pages";
+import PageLayout from "../../components/PageLayout";
 import checkName from "../../utils/checkName";
 
 const AddContact = () => {
@@ -60,7 +60,6 @@ const AddContact = () => {
     }
     addContact();
   };
-
 
   const inputStyle = css`
     font-family: "Futura Md BT", sans-serif;
@@ -127,7 +126,7 @@ const AddContact = () => {
   ));
 
   return (
-    <div css={pageStyle}>
+    <PageLayout>
       <div css={cardStyle}>
         <h1 css={formTitleStyle}>Add Contact Form</h1>
         <form onSubmit={handleSubmit}>
@@ -171,7 +170,7 @@ const AddContact = () => {
           </div>
         </form>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 export const themeLight = {
   text: "#18181b",
   bg: "#e4e4e7",
