@@ -49,29 +49,18 @@ const ContactItem = ({
     setContacts(newContacts);
   };
 
-  const bgColor = isFavorite ? "red" : "white";
-  const facStyle = css`
-    background-color: ${bgColor};
-    &:hover {
-      cursor: pointer;
-    }
-  `;
-
   const cardStyle = css`
     margin-bottom: 0.75rem;
     padding: 1rem 0.5rem;
     background: ${theme.bgComponent};
     color: ${theme.text};
-    border-radius: 4px;
+    border-radius: 0.5rem;
     border: ${theme.border};
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
     min-height: 3rem;
-    :hover {
-      transform: translateY(-0.5rem);
-    }
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     @media (max-width: 768px) {
       font-size: 0.825rem;
     }
@@ -89,9 +78,7 @@ const ContactItem = ({
     cursor: pointer;
     border: ${theme.border};
     border-radius: 4px;
-    position: relative;
     margin-left: 0.25rem;
-    z-index: 2;
     :hover {
       background-color: ${theme.accentHover};
     }
@@ -124,7 +111,7 @@ const ContactItem = ({
           </div>
         </div>
       </div>
-      <div css={css``}>
+      <div>
         <button onClick={toggleFav} css={btnStyle}>
           <IconStar size={20} />
         </button>

@@ -1,10 +1,14 @@
+/** @jsxImportSource @emotion/react */
+import { css, useTheme } from "@emotion/react";
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ContactsContext } from "../../context/ContactsContext";
 import useAddContactWithPhones from "../../hooks/useAddContactWithPhones";
 import { checkName } from "../../utils/checkName";
 
 const AddContactPage = () => {
+  const nav = useNavigate();
+  const theme = useTheme();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [numbers, setNumbers] = useState([""]);
@@ -17,13 +21,13 @@ const AddContactPage = () => {
 
   useEffect(() => {
     if (!data) return;
-    const newContacts = [...contacts, data.insert_contact.returning[0]]
+    const newContacts = [...contacts, data.insert_contact.returning[0]];
     localStorage.setItem("contacts", JSON.stringify(newContacts));
     setContacts(newContacts);
     alert("Add contact success");
-    setFirstName("")
-    setLastName("")
-    setNumbers([""])
+    setFirstName("");
+    setLastName("");
+    setNumbers([""]);
   }, [data]);
 
   const changeFirstName = (e: React.ChangeEvent) => {
@@ -46,10 +50,10 @@ const AddContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = checkName(`${firstName} ${lastName}`, contacts)
-    if(msg){
-      alert(msg)
-      return
+    const msg = checkName(`${firstName} ${lastName}`, contacts);
+    if (msg) {
+      alert(msg);
+      return;
     }
     addContact();
   };
@@ -65,38 +69,100 @@ const AddContactPage = () => {
     />
   ));
 
+  const formTitleStyle = css`
+    font-weight: 300;
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 1rem;
+  `;
+
+  const inputStyle = css`
+    font-family: "Futura Md BT", sans-serif;
+    border-radius: 0.5rem;
+    border: ${theme.border};
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  `;
+
+  const pageStyle = css`
+    padding-inline: 1rem;
+    margin: auto;
+    max-width: 1024px;
+  `;
+
+  const cardStyle = css`
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    background: ${theme.bgComponent};
+    color: ${theme.text};
+    border-radius: 0.5rem;
+    border: ${theme.border};
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  `;
+
+  const btnStyle = css`
+    color: #fafafa;
+    font-size: 1rem;
+    background-color: ${theme.accent};
+    border: ${theme.border};
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    border: ${theme.border};
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    :hover {
+      background-color: ${theme.accentHover};
+    }
+  `;
+
   return (
-    <>
-      <h1>Add Contact Form</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            onChange={changeFirstName}
-            placeholder="first name"
-            value={firstName}
-            required
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            onChange={changeLastName}
-            placeholder="last name"
-            value={lastName}
-            required
-          />
-        </div>
-        <div>
-          {phonesInput}
-          <button onClick={addPhoneInput}>+</button>
-        </div>
-        <div>
-          <input type="submit" value="save" />
-          <Link to="/">back</Link>
-        </div>
-      </form>
-    </>
+    <div css={pageStyle}>
+      <div css={cardStyle}>
+        <h1 css={formTitleStyle}>Add Contact Form</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              css={inputStyle}
+              type="text"
+              onChange={changeFirstName}
+              placeholder="first name"
+              value={firstName}
+              required
+            />
+          </div>
+          <div>
+            <input
+              css={inputStyle}
+              type="text"
+              onChange={changeLastName}
+              placeholder="last name"
+              value={lastName}
+              required
+            />
+          </div>
+          <div>
+            {phonesInput}
+            <button onClick={addPhoneInput}>+</button>
+          </div>
+          <div
+            css={css`
+              text-align: right;
+            `}
+          >
+            <button css={btnStyle} type="submit">
+              save
+            </button>
+            <button css={btnStyle} onClick={() => nav("/")}>
+              back
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

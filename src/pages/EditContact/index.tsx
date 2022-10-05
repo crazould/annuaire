@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css, useTheme } from "@emotion/react";
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import EditPhoneForm from "./PhoneForm";
@@ -8,6 +10,7 @@ import { Contact } from "../../App";
 import { checkName } from "../../utils/checkName";
 
 const EditContactPage = () => {
+  const theme = useTheme();
   const { id } = useParams();
   const { contacts, setContacts } = useContext(ContactsContext);
   const contact = contacts.find((c) => c.id == id);

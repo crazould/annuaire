@@ -15,7 +15,13 @@ export const ContactList = ({ contacts }: ContactListProps) => {
   const pages = new Array(Math.ceil(contacts.length / itemShow)).fill(" ");
   const changePage = (idx: number) => () => setPage(idx);
 
-  const listStyle = css``;
+  const listTitleStyle = css`
+    color: ${theme.text};
+    font-weight: bold;
+    padding-bottom: 2.5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid ${theme.text};
+  `;
 
   const paginationStyle = css`
     display: flex;
@@ -28,6 +34,8 @@ export const ContactList = ({ contacts }: ContactListProps) => {
       border: ${theme.border};
       padding: 0.25rem 0.5rem;
       border-radius: 9999px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
     }
   `;
 
@@ -55,8 +63,8 @@ export const ContactList = ({ contacts }: ContactListProps) => {
     );
 
   return (
-    <div css={listStyle}>
-      <div></div>
+    <div>
+      <div css={listTitleStyle}>contacts</div>
       {contacts
         .slice(0 + page * itemShow, itemShow + page * itemShow)
         .map((contact: Contact, idx: number) => {

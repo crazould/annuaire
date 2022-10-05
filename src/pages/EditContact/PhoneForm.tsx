@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css, useTheme } from "@emotion/react";
 import React, { useEffect, useState, useContext } from "react";
 import { Contact } from "../../App";
 import { ContactsContext } from "../../context/ContactsContext";
@@ -10,6 +12,7 @@ interface EditPhoneFormProps {
 }
 
 const EditPhoneForm = ({ contact }: EditPhoneFormProps) => {
+  const theme = useTheme();
   const { contacts, setContacts } = useContext(ContactsContext);
   const id = contact.id;
   const [addMode, setAddMode] = useState(false);

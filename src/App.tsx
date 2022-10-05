@@ -80,16 +80,16 @@ function App() {
     background-color: ${isDark ? themeDark.bg : themeLight.bg};
     padding-block: 2rem;
     min-height: 90vh;
-  `
+  `;
 
   return (
     <ThemeProvider theme={isDark ? themeDark : themeLight}>
       <Header isDark={isDark} setIsDark={setIsDark} />
-      <main css={wrapperStyle}>
-        <ContactsContext.Provider value={{ contacts, setContacts }}>
+      <ContactsContext.Provider value={{ contacts, setContacts }}>
+        <main css={wrapperStyle}>
           <RouteList />
-        </ContactsContext.Provider>
-      </main>
+        </main>
+      </ContactsContext.Provider>
       <Footer />
     </ThemeProvider>
   );

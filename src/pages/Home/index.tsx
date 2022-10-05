@@ -40,9 +40,7 @@ const HomePage = () => {
     cursor: pointer;
     border: ${theme.border};
     border-radius: 4px;
-    position: relative;
     margin-left: 0.25rem;
-    z-index: 2;
     :hover {
       background-color: ${theme.accentHover};
     }
@@ -54,15 +52,21 @@ const HomePage = () => {
     border-radius: 4px;
     border: ${theme.border};
     padding: 0.25rem;
+    padding-left: rem;
     width: 85%;
   `;
 
+  const pageStyle = css`
+    padding-inline: 1rem;
+    margin:auto;
+    max-width: 1024px;
+  `;
   return (
-    <div style={{ marginInline: "1rem" }}>
+    <div css={pageStyle}>
       <div
         css={css`
           display: flex;
-          margin-bottom: 1.75rem;
+          margin-bottom: .75rem;
         `}
       >
         <input
