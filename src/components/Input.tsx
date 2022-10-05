@@ -25,11 +25,13 @@ const Input = ({
     border-radius: 0.5rem;
     border: ${theme.border};
     padding: 0.5rem;
+    width: calc(100% - 1rem);
     font-size: 1rem;
-    margin-bottom: 1rem;
-    width: 80%;
+    margin-bottom: 0.5rem;
+    display: block;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   `;
+
   return (
     <input
       css={inputStyle}

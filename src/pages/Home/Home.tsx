@@ -46,17 +46,7 @@ const Home = () => {
 
   return (
     <PageLayout>
-      <div
-        css={css`
-          margin-bottom: 0.75rem;
-        `}
-      >
-        <Input
-          type="text"
-          onChange={handleSearch}
-          value={searchQuery}
-          placeholder="search..."
-        />
+      <div>
         <Button
           styleProp={addBtnStyle}
           onClick={() => nav("/add")}
@@ -64,6 +54,12 @@ const Home = () => {
         >
           <IconPlus size={20} stroke={3} />
         </Button>
+        <Input
+          type="text"
+          onChange={handleSearch}
+          value={searchQuery}
+          placeholder="search..."
+        />
       </div>
       <FavList contacts={contacts.filter((c) => c.isFavorite)} />
       <ContactList contacts={contacts.filter((c) => !c.isFavorite)} />
