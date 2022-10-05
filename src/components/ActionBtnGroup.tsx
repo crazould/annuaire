@@ -25,7 +25,7 @@ const ActionBtnGroup = ({
     </>
   ) : (
     <TextBtn type="button" onClick={toggleMode}>
-      {isAddMode ? "add number" : "edit"}
+      {isAddMode ? "create new number" : "edit"}
     </TextBtn>
   );
   return (

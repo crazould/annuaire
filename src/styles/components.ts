@@ -15,10 +15,12 @@ export const formStyle = css`
     margin: 0;
     margin-bottom: 1.25rem;
   }
+
   .input-group label {
     display: block;
     margin-bottom: 0.25rem;
     margin-left: 0.25rem;
-    
   }
+
+
 `;

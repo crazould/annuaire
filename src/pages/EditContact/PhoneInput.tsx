@@ -5,8 +5,17 @@ import ContactsContext from "../../context/ContactsContext";
 import useEditPhoneNumber from "../../hooks/useEditPhoneNumber";
 import ActionBtn from "../../components/ActionBtnGroup";
 import Input from "../../components/Input";
+import { formStyle } from "../../styles/components";
 
-const PhoneInput = ({ id, number }: { id: number; number: string }) => {
+const PhoneInput = ({
+  id,
+  number,
+  idx,
+}: {
+  id: number;
+  number: string;
+  idx: number;
+}) => {
   const { contacts, setContacts } = useContext(ContactsContext);
   const [editMode, setEditMode] = useState(false);
   const [newNumber, setNewNumber] = useState(number);
@@ -35,18 +44,21 @@ const PhoneInput = ({ id, number }: { id: number; number: string }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={savePhone}>
+    <form onSubmit={savePhone} css={formStyle}>
+      <div className="input-group">
+        <label htmlFor={`phone${idx}`}>{`phone ${idx + 1}`}</label>
         <Input
+          id={`phone${idx}`}
           onChange={changePhones}
-          placeholder="phone number"
+          placeholder="ex: +628123456789"
           type="tel"
           value={newNumber}
           disabled={!editMode}
+          required
         />
         <ActionBtn mode={editMode} setMode={setEditMode} />
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 

@@ -66,11 +66,11 @@ const AddContact = () => {
 
   const phonesInput = numbers.map((number, idx) => (
     <div className="input-group">
-      <label htmlFor={`number-${idx}`}>{`no ${idx+1}`}</label>
+      <label htmlFor={`number-${idx}`}>{`phone ${idx+1}`}</label>
       <Input
         id={`number-${idx}`}
         onChange={(e) => changePhones(e, idx)}
-        placeholder="phone number"
+        placeholder="ex: +628123456789"
         key={idx}
         type="tel"
         value={number}
@@ -83,7 +83,7 @@ const AddContact = () => {
     <PageLayout>
       <Card>
         <form onSubmit={handleSubmit} css={formStyle}>
-          <h1 >Add Contact Form</h1>
+          <h1 >Add Contact</h1>
           <div className="input-group">
             <label htmlFor="firstName">first name</label>
             <Input

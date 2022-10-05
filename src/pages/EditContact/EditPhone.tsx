@@ -7,7 +7,6 @@ import ActionBtn from "../../components/ActionBtnGroup";
 import EditPhoneInput from "./PhoneInput";
 import Input from "../../components/Input";
 
-
 const EditPhone = ({ contact }: { contact: Contact }) => {
   const { contacts, setContacts } = useContext(ContactsContext);
   const id = contact.id;
@@ -41,17 +40,22 @@ const EditPhone = ({ contact }: { contact: Contact }) => {
   };
 
   const phonesInput = contact.phones.map(({ number }, idx) => {
-    const props = { number, id };
+    const props = { number, id, idx };
     return <EditPhoneInput key={idx} {...props} />;
   });
 
   const newNumberInput = addMode ? (
-    <Input
-      placeholder="new number"
-      type="tel"
-      value={newNumber}
-      onChange={changeNewNumber}
-    />
+    <div className="input-group">
+      <label htmlFor={`newNumber`}>{`new phone`}</label>
+      <Input
+        id={`newNumber`}
+        placeholder="ex: +628123456789"
+        type="tel"
+        value={newNumber}
+        onChange={changeNewNumber}
+        required
+      />
+    </div>
   ) : (
     ""
   );

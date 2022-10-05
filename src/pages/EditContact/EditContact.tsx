@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import PhoneForm from "./EditPhone";
+import EditPhone from "./EditPhone";
 import ActionBtn from "../../components/ActionBtnGroup";
 import ContactsContext from "../../context/ContactsContext";
 import useEditContact from "../../hooks/useEditContact";
 import { Contact } from "../../App";
 import checkName from "../../utils/checkName";
 import PageLayout from "../../components/PageLayout";
-import { formTitleStyle } from "../../styles/components";
+import { formStyle } from "../../styles/components";
 import Input from "../../components/Input";
 import TextBtn from "../../components/TextBtn";
 import Card from "../../components/Card";
@@ -61,36 +61,41 @@ const EditContact = () => {
   return (
     <PageLayout>
       <Card>
-        <h1 css={formTitleStyle}>Edit Contact Form</h1>
-        <div>
-          <form onSubmit={saveContact}>
-            <div>
-              <Input
-                type="text"
-                onChange={changeFirstName}
-                placeholder="first name"
-                required
-                value={firstName}
-                disabled={!editMode}
-              />
-            </div>
-            <div>
-              <Input
-                type="text"
-                onChange={changeLastName}
-                placeholder="last name"
-                required
-                value={lastName}
-                disabled={!editMode}
-              />
-            </div>
-            <ActionBtn mode={editMode} setMode={setEditMode} />
-          </form>
-          {contact ? <PhoneForm contact={contact} /> : ""}
-          <TextBtn type="button" onClick={() => nav("/")}>
-            back
-          </TextBtn>
+        <form css={formStyle} onSubmit={saveContact}>
+          <h1>Edit Detail</h1>
+          <div className="input-group">
+            <label htmlFor="Name">first name</label>
+            <Input
+              id="firstName"
+              type="text"
+              onChange={changeFirstName}
+              placeholder="ex: John"
+              required
+              value={firstName}
+              disabled={!editMode}
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="lastName">last name</label>
+            <Input
+              id="lastName"
+              type="text"
+              onChange={changeLastName}
+              placeholder="ex: Doe"
+              required
+              value={lastName}
+              disabled={!editMode}
+            />
+          </div>
+          <ActionBtn mode={editMode} setMode={setEditMode} />
+        </form>
+        <div css={[formStyle]} style={{marginBlock: "2rem"}} >
+          <h1>Edit Phones</h1>
+          {contact ? <EditPhone contact={contact} /> : ""}
         </div>
+        <TextBtn type="button" onClick={() => nav("/")}>
+          back
+        </TextBtn>
       </Card>
     </PageLayout>
   );
