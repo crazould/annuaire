@@ -1,11 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from "react";
-import { RouteList } from "./components/RouteList";
-import { ContactsContext } from "./context/ContactsContext";
+import RouteList from "./components/RouteList";
+import ContactsContext from "./context/ContactsContext";
 import useGetContactList from "./hooks/useGetContactList";
-import { css, ThemeProvider } from "@emotion/react";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { ThemeProvider } from "@emotion/react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Wrapper from "./components/Wrapper";
+import { themeDark, themeLight } from "./styles/theme";
+
 export interface Phone {
   number: string;
 }
@@ -16,24 +19,6 @@ export interface Contact {
   phones: Phone[];
   isFavorite: boolean;
 }
-
-const themeLight = {
-  text: "#18181b",
-  bg: "#e4e4e7",
-  bgComponent: "#fafafa",
-  border: "1px solid #d4d4d8",
-  accent: "#2563eb",
-  accentHover: "#60a5fa",
-};
-
-const themeDark = {
-  text: "#fafafa",
-  bg: "#18181b",
-  bgComponent: "#27272a",
-  border: "1px solid #404040",
-  accent: "#2563eb",
-  accentHover: "#60a5fa",
-};
 
 function App() {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -75,22 +60,15 @@ function App() {
 
   if (!data) return <>...</>;
 
-  const wrapperStyle = css`
-    color: ${isDark ? themeDark.text : themeLight.text};
-    background-color: ${isDark ? themeDark.bg : themeLight.bg};
-    padding-block: 2rem;
-    min-height: 90vh;
-  `;
-
   return (
     <ThemeProvider theme={isDark ? themeDark : themeLight}>
-      <Header isDark={isDark} setIsDark={setIsDark} />
       <ContactsContext.Provider value={{ contacts, setContacts }}>
-        <main css={wrapperStyle}>
+        <Header isDark={isDark} setIsDark={setIsDark} />
+        <Wrapper>
           <RouteList />
-        </main>
+        </Wrapper>
+        <Footer />
       </ContactsContext.Provider>
-      <Footer />
     </ThemeProvider>
   );
 }
