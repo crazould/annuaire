@@ -13,7 +13,7 @@ export interface Phone {
   number: string;
 }
 export interface Contact {
-  id: string | undefined;
+  id: number;
   first_name: string;
   last_name: string;
   phones: Phone[];
@@ -34,7 +34,7 @@ function App() {
         newContacts = newContacts.map((c: Contact) => {
           let newContact = c;
           const oldContact = parsedContacts.find(
-            (oc: Contact) => oc.id == c.id
+            (oc: Contact) => oc.id === c.id
           );
           newContact = oldContact
             ? { ...newContact, isFavorite: oldContact.isFavorite }

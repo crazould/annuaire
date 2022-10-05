@@ -17,7 +17,7 @@ const ADD_NUMBER_TO_CONTACT = gql`
   }
 `;
 
-function useAddNumberToContact(id: string | undefined, number: string) {
+function useAddNumberToContact(id: number, number: string) {
   const variables = {
     contact_id: id,
     phone_number: number,

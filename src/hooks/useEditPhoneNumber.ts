@@ -23,7 +23,7 @@ const EDIT_PHONE_NUMBER = gql`
 `;
 
 function useEditPhoneNumber(
-  id: string | undefined,
+  id: number,
   oldNumber: string,
   newNumber: string
 ) {

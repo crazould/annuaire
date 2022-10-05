@@ -7,7 +7,7 @@ const RouteList = () => {
   return useRoutes([
     { path: "/", element: <Home /> },
     { path: "/add", element: <AddContact /> },
-    { path: "/edit/:id", element: <EditContact /> },
+    { path: "/edit/:contact_id", element: <EditContact /> },
   ]);
 };
 

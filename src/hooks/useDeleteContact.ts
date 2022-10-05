@@ -10,7 +10,7 @@ const DELETE_CONTACT = gql`
   }
 `;
 
-function useDeleteContact(id: string | undefined) {
+function useDeleteContact(id: number) {
   return useMutation(DELETE_CONTACT, { variables: { id } });
 }
 

@@ -22,8 +22,8 @@ const PhoneForm = ({ contact }: PhoneFormProps) => {
   useEffect(() => {
     if (data) {
       const newContacts = [...contacts];
-      let idx = newContacts.findIndex((c: Contact) => c.id == id);
-      if (idx == -1) return;
+      let idx = newContacts.findIndex((c: Contact) => c.id === id);
+      if (idx === -1) return;
       newContacts[idx] = {
         ...newContacts[idx],
         ...data.insert_phone.returning[0],

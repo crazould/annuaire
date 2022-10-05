@@ -14,7 +14,7 @@ const EDIT_CONTACT = gql`
 `;
 
 function useEditContact(
-  id: string | undefined,
+  id: number,
   firstName: string,
   lastName: string
 ) {

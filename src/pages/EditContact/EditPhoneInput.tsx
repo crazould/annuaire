@@ -7,7 +7,7 @@ import useEditPhoneNumber from "../../hooks/useEditPhoneNumber";
 import ActionBtn from "../../components/ActionBtn";
 
 interface EditPhoneInputProps {
-  id: string | undefined;
+  id: number;
   number: string;
 }
 
@@ -21,7 +21,7 @@ const EditPhoneInput = ({ id, number }: EditPhoneInputProps) => {
   useEffect(() => {
     if (data) {
       const newContacts = [...contacts];
-      let idx = newContacts.findIndex((c: Contact) => c.id == id);
+      let idx = newContacts.findIndex((c: Contact) => c.id === id);
       if (idx === -1) return;
       newContacts[idx] = { ...newContacts[idx], ...data.update_phone_by_pk };
       localStorage.setItem("contacts", JSON.stringify(newContacts));

@@ -14,7 +14,8 @@ import { formTitleStyle } from "../../styles/components";
 const EditContact = () => {
   const nav = useNavigate();
   const theme = useTheme();
-  const { id } = useParams();
+  const { contact_id } = useParams();
+  const id = contact_id ? parseInt(contact_id) : -1;
   const { contacts, setContacts } = useContext(ContactsContext);
   const contact = contacts.find((c) => c.id === id);
   const { first_name, last_name } = contact

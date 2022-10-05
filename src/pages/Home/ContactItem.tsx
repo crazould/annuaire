@@ -30,7 +30,7 @@ const ContactItem = ({
     if (data) {
       const newContacts = [...contacts];
       const index = newContacts.findIndex(
-        (c) => c.id == data.delete_contact_by_pk.id
+        (c) => c.id === data.delete_contact_by_pk.id
       );
       newContacts.splice(index, 1);
       localStorage.setItem("contacts", JSON.stringify(newContacts));
@@ -41,8 +41,8 @@ const ContactItem = ({
 
   const toggleFav = () => {
     const newContacts = [...contacts];
-    let idx = newContacts.findIndex((c: Contact) => c.id == id);
-    if (idx == -1) return;
+    let idx = newContacts.findIndex((c: Contact) => c.id === id);
+    if (idx === -1) return;
     newContacts[idx].isFavorite = !newContacts[idx].isFavorite;
     localStorage.setItem("contacts", JSON.stringify(newContacts));
     setContacts(newContacts);
