@@ -2,10 +2,10 @@
 
 body {
   margin: 0;
-  font-family: "Futura Md BT",sans-serif;
-  box-sizing: border-box;
+  font-family: "Futura Md BT", sans-serif;
 }
 
 * {
   transition: 150ms;
+  box-sizing: border-box;
 }

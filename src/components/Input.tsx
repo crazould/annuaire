@@ -24,8 +24,8 @@ const Input = ({
     font-family: "Futura Md BT", sans-serif;
     border-radius: 0.5rem;
     border: ${theme.border};
-    padding: 0.5rem;
-    width: calc(100% - 1rem);
+    padding: 0.75rem;
+    width: 100%;
     font-size: 1rem;
     margin-bottom: 0.5rem;
     display: block;
