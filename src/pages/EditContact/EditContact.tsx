@@ -10,6 +10,7 @@ import { Contact } from "../../App";
 import checkName from "../../utils/checkName";
 import PageLayout from "../../components/PageLayout";
 import { formTitleStyle } from "../../styles/components";
+import Input from "../../components/Input";
 
 const EditContact = () => {
   const nav = useNavigate();
@@ -57,17 +58,6 @@ const EditContact = () => {
     setEditMode(!editMode);
   };
 
-  const inputStyle = css`
-    font-family: "Futura Md BT", sans-serif;
-    border-radius: 0.5rem;
-    border: ${theme.border};
-    padding: 0.5rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    width: 80%;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  `;
-
   const cardStyle = css`
     margin-bottom: 0.75rem;
     padding: 1rem;
@@ -101,8 +91,7 @@ const EditContact = () => {
         <div>
           <form onSubmit={saveContact}>
             <div>
-              <input
-                css={inputStyle}
+              <Input
                 type="text"
                 onChange={changeFirstName}
                 placeholder="first name"
@@ -112,8 +101,7 @@ const EditContact = () => {
               />
             </div>
             <div>
-              <input
-                css={inputStyle}
+              <Input
                 type="text"
                 onChange={changeLastName}
                 placeholder="last name"

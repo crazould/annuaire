@@ -1,6 +1,6 @@
 import { Contact } from "../App"
 
-const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
 
 const checkName = (newName: string, contacts: Contact[]) =>{
   let msg

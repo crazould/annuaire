@@ -8,6 +8,7 @@ import useAddContactWithPhones from "../../hooks/useAddContactWithPhones";
 import { formTitleStyle } from "../../styles/components";
 import PageLayout from "../../components/PageLayout";
 import checkName from "../../utils/checkName";
+import Input from "../../components/Input";
 
 const AddContact = () => {
   const nav = useNavigate();
@@ -28,9 +29,6 @@ const AddContact = () => {
     localStorage.setItem("contacts", JSON.stringify(newContacts));
     setContacts(newContacts);
     alert("Add contact success");
-    setFirstName("");
-    setLastName("");
-    setNumbers([""]);
   }, [data]);
 
   const changeFirstName = (e: React.ChangeEvent) => {
@@ -59,18 +57,10 @@ const AddContact = () => {
       return;
     }
     addContact();
+    setFirstName("");
+    setLastName("");
+    setNumbers([""]);
   };
-
-  const inputStyle = css`
-    font-family: "Futura Md BT", sans-serif;
-    border-radius: 0.5rem;
-    border: ${theme.border};
-    padding: 0.5rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    width: 80%;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  `;
 
   const cardStyle = css`
     margin-bottom: 0.75rem;
@@ -114,14 +104,13 @@ const AddContact = () => {
   `;
 
   const phonesInput = numbers.map((number, idx) => (
-    <input
+    <Input
       onChange={(e) => changePhones(e, idx)}
       placeholder="phone number"
       key={idx}
       type="tel"
       value={number}
       required
-      css={inputStyle}
     />
   ));
 
@@ -131,8 +120,7 @@ const AddContact = () => {
         <h1 css={formTitleStyle}>Add Contact Form</h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <input
-              css={inputStyle}
+            <Input
               type="text"
               onChange={changeFirstName}
               placeholder="first name"
@@ -141,8 +129,7 @@ const AddContact = () => {
             />
           </div>
           <div>
-            <input
-              css={inputStyle}
+            <Input
               type="text"
               onChange={changeLastName}
               placeholder="last name"

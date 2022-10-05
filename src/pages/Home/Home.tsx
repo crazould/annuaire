@@ -8,6 +8,8 @@ import ContactsContext from "../../context/ContactsContext";
 import { Contact } from "../../App";
 import { IconPlus } from "@tabler/icons";
 import PageLayout from "../../components/PageLayout";
+import Input from "../../components/Input";
+
 
 const Home = () => {
   const nav = useNavigate();
@@ -47,17 +49,6 @@ const Home = () => {
     }
   `;
 
-  const inputStyle = css`
-    font-family: "Futura Md BT", sans-serif;
-    border-radius: 0.5rem;
-    border: ${theme.border};
-    padding: 0.5rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    width: 80%;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  `;
-
   return (
     <PageLayout>
       <div
@@ -66,12 +57,11 @@ const Home = () => {
           margin-bottom: 0.75rem;
         `}
       >
-        <input
+        <Input
           type="text"
           onChange={handleSearch}
           value={searchQuery}
           placeholder="search..."
-          css={inputStyle}
         />
         <button onClick={() => nav("/add")} css={[btnStyle]}>
           <IconPlus size={20} />
