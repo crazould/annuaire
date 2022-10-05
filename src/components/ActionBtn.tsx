@@ -25,7 +25,7 @@ const ActionBtn = ({ mode, setMode, isAddMode }: ActionBtnProps) => {
     margin-right: 0.5rem;
     cursor: pointer;
     border: ${theme.border};
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     :hover {
       background-color: ${theme.accentHover};
@@ -56,12 +56,8 @@ const ActionBtn = ({ mode, setMode, isAddMode }: ActionBtnProps) => {
       </button>
     </>
   ) : (
-    <button
-      css={btnTextStyle}
-      type="button"
-      onClick={toggleMode}
-    >
-      {isAddMode ? "add number": "edit"}
+    <button css={btnTextStyle} type="button" onClick={toggleMode}>
+      {isAddMode ? "add number" : "edit"}
     </button>
   );
   return (

@@ -8,8 +8,7 @@ interface HeaderProps {
   setIsDark: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export const Header = ({ isDark, setIsDark }: HeaderProps) => {
-  
+const Header = ({ isDark, setIsDark }: HeaderProps) => {
   const theme = useTheme();
   const toggleTheme = () => {
     const newTheme = !isDark;
@@ -19,9 +18,10 @@ export const Header = ({ isDark, setIsDark }: HeaderProps) => {
 
   const headerStyle = css`
     background-color: ${theme.bgComponent};
-    color: ${theme.text};
+    color: ${theme.accent};
     border: ${theme.border};
     user-select: none;
+    font-style: italic;
     > div {
       display: flex;
       max-width: 1024px;
@@ -55,3 +55,5 @@ export const Header = ({ isDark, setIsDark }: HeaderProps) => {
     </header>
   );
 };
+
+export default Header

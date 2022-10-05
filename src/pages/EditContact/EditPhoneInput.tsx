@@ -2,7 +2,7 @@
 import { css, useTheme } from "@emotion/react";
 import React, { useContext, useEffect, useState } from "react";
 import { Contact } from "../../App";
-import { ContactsContext } from "../../context/ContactsContext";
+import ContactsContext from "../../context/ContactsContext";
 import useEditPhoneNumber from "../../hooks/useEditPhoneNumber";
 import ActionBtn from "../../components/ActionBtn";
 

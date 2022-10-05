@@ -2,7 +2,7 @@ import { Contact } from "../App"
 
 const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
-export const checkName = (newName: string, contacts: Contact[]) =>{
+const checkName = (newName: string, contacts: Contact[]) =>{
   let msg
   const isExists = contacts.find(
     (c) => newName === `${c.first_name} ${c.last_name}`
@@ -11,3 +11,5 @@ export const checkName = (newName: string, contacts: Contact[]) =>{
   if (specialChars.test(newName)) msg ="please don't use special characters"
   return msg
 }
+
+export default checkName

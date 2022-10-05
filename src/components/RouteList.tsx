@@ -1,12 +1,14 @@
 import { useRoutes } from "react-router-dom";
-import ContactPage from "../pages/Home";
-import AddContactPage from "../pages/AddContact";
-import EditContactPage from "../pages/EditContact";
+import Home from "../pages/Home/Home";
+import AddContact from "../pages/AddContact/AddContact";
+import EditContact from "../pages/EditContact/EditContact";
 
-export const RouteList = () => {
+const RouteList = () => {
   return useRoutes([
-    { path: "/", element: <ContactPage /> },
-    { path: "/add", element: <AddContactPage /> },
-    { path: "/edit/:id", element: <EditContactPage /> },
+    { path: "/", element: <Home /> },
+    { path: "/add", element: <AddContact /> },
+    { path: "/edit/:id", element: <EditContact /> },
   ]);
 };
+
+export default RouteList;

@@ -6,7 +6,9 @@ interface ContactsContextType {
   setContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
 }
 
-export const ContactsContext = createContext<ContactsContextType>({
+const ContactsContext = createContext<ContactsContextType>({
   contacts: [],
   setContacts: () => {},
 });
+
+export default ContactsContext

@@ -8,7 +8,7 @@ export const Footer = () => {
   const footerStyle = css`
     background-color: ${theme.bgComponent};
     border: ${theme.border};
-    color: ${theme.text};
+    color: ${theme.accent};
     font-size: 1rem;
     > div {
       display: flex;
@@ -53,3 +53,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;

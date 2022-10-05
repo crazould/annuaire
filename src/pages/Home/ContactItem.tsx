@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useDeleteContact from "../../hooks/useDeleteContact";
 import { Contact } from "../../App";
-import { ContactsContext } from "../../context/ContactsContext";
+import ContactsContext from "../../context/ContactsContext";
 import {
   IconStar,
   IconTrash,

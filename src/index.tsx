@@ -3,13 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import "./assets/global.css"
-
-export const client = new ApolloClient({
-  uri: "https://wpe-hiring.tokopedia.net/graphql",
-  cache: new InMemoryCache(),
-});
+import { ApolloProvider } from "@apollo/client";
+import client from "./utils/apolloClient";
+import "./styles/global.css"
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

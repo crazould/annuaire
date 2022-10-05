@@ -4,11 +4,12 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContactList } from "./ContactList";
 import { FavList } from "./FavList";
-import { ContactsContext } from "../../context/ContactsContext";
+import ContactsContext from "../../context/ContactsContext";
 import { Contact } from "../../App";
 import { IconPlus } from "@tabler/icons";
+import { pageStyle } from "../../styles/pages";
 
-const HomePage = () => {
+const Home = () => {
   const nav = useNavigate();
   const theme = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
@@ -48,25 +49,21 @@ const HomePage = () => {
 
   const inputStyle = css`
     font-family: "Futura Md BT", sans-serif;
-    display: block;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     border: ${theme.border};
-    padding: 0.25rem;
-    padding-left: rem;
-    width: 85%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   `;
 
-  const pageStyle = css`
-    padding-inline: 1rem;
-    margin:auto;
-    max-width: 1024px;
-  `;
   return (
     <div css={pageStyle}>
       <div
         css={css`
           display: flex;
-          margin-bottom: .75rem;
+          margin-bottom: 0.75rem;
         `}
       >
         <input
@@ -76,7 +73,7 @@ const HomePage = () => {
           placeholder="search..."
           css={inputStyle}
         />
-        <button onClick={() => nav("/add")} css={btnStyle}>
+        <button onClick={() => nav("/add")} css={[btnStyle]}>
           <IconPlus size={20} />
         </button>
       </div>
@@ -86,4 +83,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Home;

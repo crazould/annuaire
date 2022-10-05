@@ -3,11 +3,13 @@ import { css, useTheme } from "@emotion/react";
 import { IconPlus } from "@tabler/icons";
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ContactsContext } from "../../context/ContactsContext";
+import ContactsContext from "../../context/ContactsContext";
 import useAddContactWithPhones from "../../hooks/useAddContactWithPhones";
-import { checkName } from "../../utils/checkName";
+import { formTitleStyle } from "../../styles/components";
+import { pageStyle } from "../../styles/pages";
+import checkName from "../../utils/checkName";
 
-const AddContactPage = () => {
+const AddContact = () => {
   const nav = useNavigate();
   const theme = useTheme();
   const [firstName, setFirstName] = useState("");
@@ -59,12 +61,6 @@ const AddContactPage = () => {
     addContact();
   };
 
-  const formTitleStyle = css`
-    font-weight: 300;
-    font-size: 2rem;
-    margin: 0;
-    margin-bottom: 1rem;
-  `;
 
   const inputStyle = css`
     font-family: "Futura Md BT", sans-serif;
@@ -75,12 +71,6 @@ const AddContactPage = () => {
     margin-bottom: 1rem;
     width: 80%;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  `;
-
-  const pageStyle = css`
-    padding-inline: 1rem;
-    margin: auto;
-    max-width: 1024px;
   `;
 
   const cardStyle = css`
@@ -161,7 +151,11 @@ const AddContactPage = () => {
               required
             />
           </div>
-          <div css={css`margin-bottom: 1rem;`}>
+          <div
+            css={css`
+              margin-bottom: 1rem;
+            `}
+          >
             {phonesInput}
             <button type="button" onClick={addPhoneInput} css={btnStyle}>
               <IconPlus size={20} />
@@ -181,4 +175,4 @@ const AddContactPage = () => {
   );
 };
 
-export default AddContactPage;
+export default AddContact;
