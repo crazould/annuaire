@@ -45,42 +45,68 @@ const ContactItem = ({
   };
 
   const itemStyle = css`
-    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 2.25rem;
+    padding-inline: 0.75rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    min-height: 3rem;
+    position: relative;
     @media (max-width: 768px) {
-      font-size: 0.825rem;
     }
   `;
+
+  const screenWidth = window.screen.width;
+  console.log(screenWidth);
 
   return (
     <Card styleProp={itemStyle}>
       <div
         css={css`
-          display: flex;
+          background-color: ${theme.accent};
+          color: #fafafa;
+          border-radius: 9999px;
+          padding: 0.5rem 1rem;
+          font-size: 1.5rem;
+          font-weight: 600;
+          position: absolute;
+          text-transform: uppercase;
+          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+            0 2px 4px -2px rgb(0 0 0 / 0.1);
+          top: -1.25rem;
         `}
       >
-        <IconUserCircle
-          size={40}
-          stroke={1}
+        {first_name[0]}
+      </div>
+      <div>
+        <div
           css={css`
-            margin-right: 0.25rem;
-            color: ${theme.accent};
+            font-weight: bold;
+            margin-bottom: 0.25rem;
           `}
-        />
-        <div>
-          <div
-            css={css`
-              font-weight: bold;
-            `}
-          >{`${first_name} ${last_name}`}</div>
-          <div>
-            <div>{phones[0].number}</div>
-            <div>{phones.length > 1 ? ` +${phones.length - 1}` : ""}</div>
-          </div>
+        >{`${first_name} ${last_name}`}</div>
+        <div
+          css={css`
+            margin-bottom: 0.25rem;
+          `}
+        >
+          {phones[0].number}
         </div>
+        {phones.length > 1 ? (
+          <span
+            css={css`
+              border-radius: 0.5rem;
+              font-size: 0.625rem;
+              padding: 0.25rem;
+              background-color: ${theme.bg};
+              color: ${theme.text};
+              border: ${theme.border};
+            `}
+          >
+            +{phones.length - 1} more
+          </span>
+        ) : (
+          ""
+        )}
       </div>
       <div>
         <IconBtn type="button" onClick={toggleFav}>

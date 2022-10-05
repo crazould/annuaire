@@ -17,16 +17,12 @@ export const ContactList = ({ contacts }: ContactListProps) => {
 
   const listTitleStyle = css`
     color: ${theme.text};
-    font-weight: bold;
-    padding-bottom: 2.5px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid ${theme.text};
+    font-size: 2.25rem;
   `;
 
   const paginationStyle = css`
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
     div {
       color: #fafafa;
       margin-inline: 0.25rem;
@@ -41,7 +37,7 @@ export const ContactList = ({ contacts }: ContactListProps) => {
 
   const pagination =
     pages.length === 1 ? (
-      ""
+      <div></div>
     ) : (
       <div css={paginationStyle}>
         {pages.map((_: string, idx: number) => {
@@ -65,11 +61,13 @@ export const ContactList = ({ contacts }: ContactListProps) => {
   return (
     <div>
       <div css={listTitleStyle}>contacts</div>
-      {contacts
-        .slice(0 + page * itemShow, itemShow + page * itemShow)
-        .map((contact: Contact, idx: number) => {
-          return <ContactItem key={idx} {...contact} />;
-        })}
+      <div css={css`margin-bottom: 1rem`}>
+        {contacts
+          .slice(0 + page * itemShow, itemShow + page * itemShow)
+          .map((contact: Contact, idx: number) => {
+            return <ContactItem key={idx} {...contact} />;
+          })}
+      </div>
       {pagination}
     </div>
   );

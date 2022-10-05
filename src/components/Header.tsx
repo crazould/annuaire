@@ -2,6 +2,7 @@
 import { css, useTheme } from "@emotion/react";
 import { SetStateAction } from "react";
 import { IconSun, IconMoon } from "@tabler/icons";
+import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
   isDark: boolean;
@@ -10,6 +11,7 @@ interface HeaderProps {
 
 const Header = ({ isDark, setIsDark }: HeaderProps) => {
   const theme = useTheme();
+  const nav = useNavigate();
   const toggleTheme = () => {
     const newTheme = !isDark;
     localStorage.setItem("theme", JSON.stringify(newTheme));
@@ -47,7 +49,7 @@ const Header = ({ isDark, setIsDark }: HeaderProps) => {
   return (
     <header css={headerStyle}>
       <div>
-        <div>Annuaire</div>
+        <div onClick={() => nav("/")}>Annuaire</div>
         <button onClick={toggleTheme}>
           {isDark ? <IconSun size={20} /> : <IconMoon size={20} />}
         </button>
@@ -56,4 +58,4 @@ const Header = ({ isDark, setIsDark }: HeaderProps) => {
   );
 };
 
-export default Header
+export default Header;
