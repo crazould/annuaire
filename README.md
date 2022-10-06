@@ -2,7 +2,7 @@
 
 **Annuaire** is a web app to easily manage your contacts phone number. **Annuaire** use React and Emotion to create the UI and use Apollo Graphql to handle the data.
 
-[Live demo](https://crazould.github.io/annuaire/)
+<a href="https://crazould.github.io/annuaire/" target="_blank">Live demo</a>
 
 # Pages
 - Home
