@@ -3,11 +3,7 @@ import { css, useTheme } from "@emotion/react";
 import { Contact } from "../../App";
 import ContactItem from "./ContactItem";
 
-interface FavListProps {
-  contacts: Contact[];
-}
-
-export const FavList = ({ contacts }: FavListProps) => {
+export const FavList = ({ contacts }: { contacts: Contact[] }) => {
   const theme = useTheme();
 
   const listTitleStyle = css`
@@ -16,15 +12,20 @@ export const FavList = ({ contacts }: FavListProps) => {
   `;
 
   const favList = contacts.length ? (
-    <div
-      css={css`
-        margin-bottom: 1rem;
-      `}
-    >
+    <div>
       <div css={listTitleStyle}>favorites</div>
-      {contacts.map((contact: Contact, idx: number) => {
-        return <ContactItem key={idx} {...contact} />;
-      })}
+      <div
+        css={css`
+          margin-bottom: 1rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        `}
+      >
+        {contacts.map((contact: Contact, idx: number) => {
+          return <ContactItem key={idx} {...contact} />;
+        })}
+      </div>
     </div>
   ) : (
     <div></div>

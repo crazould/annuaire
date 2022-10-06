@@ -45,18 +45,26 @@ const ContactItem = ({
   };
 
   const itemStyle = css`
+    width: 100%;
     margin-top: 2rem;
     padding-top: 2.25rem;
     padding-inline: 0.75rem;
     display: flex;
     justify-content: space-between;
     position: relative;
-    @media (max-width: 768px) {
+    @media (min-width: 768px) {
+      width: calc(98% / 2);
+    }
+    @media (min-width: 1024px) {
+      display: block;
+      .contact-info {
+        min-height: 70px;
+        margin-bottom: 1.5rem;
+      }
     }
   `;
 
   const screenWidth = window.screen.width;
-  console.log(screenWidth);
 
   return (
     <Card styleProp={itemStyle}>
@@ -77,11 +85,14 @@ const ContactItem = ({
       >
         {first_name[0]}
       </div>
-      <div>
+      <div className="contact-info">
         <div
           css={css`
             font-weight: bold;
             margin-bottom: 0.25rem;
+            @media (min-width: 1024px) {
+              font-size: 1.25rem
+            }
           `}
         >{`${first_name} ${last_name}`}</div>
         <div
@@ -108,15 +119,19 @@ const ContactItem = ({
           ""
         )}
       </div>
-      <div css={css`min-width:102px;`}>
+      <div
+        css={css`
+          min-width: 102px;
+        `}
+      >
         <IconBtn type="button" onClick={toggleFav}>
-          <IconStar size={20} />
+          <IconStar size={screenWidth >= 768 ? 24 : 20} />
         </IconBtn>
         <IconBtn type="button" onClick={() => nav(`/edit/${id}`)}>
-          <IconEdit size={20} />
+          <IconEdit size={screenWidth >= 768 ? 24 : 20} />
         </IconBtn>
         <IconBtn type="button" onClick={handleDelete}>
-          <IconTrash size={20} />
+          <IconTrash size={screenWidth >= 768 ? 24 : 20} />
         </IconBtn>
       </div>
     </Card>

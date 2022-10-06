@@ -4,11 +4,7 @@ import { useState } from "react";
 import { Contact } from "../../App";
 import ContactItem from "./ContactItem";
 
-interface ContactListProps {
-  contacts: Contact[];
-}
-
-export const ContactList = ({ contacts }: ContactListProps) => {
+export const ContactList = ({ contacts }: { contacts: Contact[] }) => {
   const theme = useTheme();
   const [page, setPage] = useState(0);
   const itemShow = 10;
@@ -61,7 +57,14 @@ export const ContactList = ({ contacts }: ContactListProps) => {
   return (
     <div>
       <div css={listTitleStyle}>contacts</div>
-      <div css={css`margin-bottom: 1rem`}>
+      <div
+        css={css`
+          margin-bottom: 1rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        `}
+      >
         {contacts
           .slice(0 + page * itemShow, itemShow + page * itemShow)
           .map((contact: Contact, idx: number) => {
