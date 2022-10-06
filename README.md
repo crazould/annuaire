@@ -1,46 +1,39 @@
-# Getting Started with Create React App
+# About
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Annuaire** is a web app to easily manage your contacts phone number. **Annuaire** use React and Emotion to create the UI and use Apollo Graphql to handle the data.
 
-## Available Scripts
+# Pages
+- Home
+- Add Contact
+- Edit Contact
 
-In the project directory, you can run:
+# Mobile
+![m-all](https://user-images.githubusercontent.com/53102589/194208351-99ea888b-90a4-429f-afae-307b9d972937.gif)
 
-### `npm start`
+# Dekstop
+![d-all](https://user-images.githubusercontent.com/53102589/194208361-05ef8508-4adb-4ac2-bf79-d7f0008f31c0.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Features
+### ✅ **Dark mode**
+![m-dark](https://user-images.githubusercontent.com/53102589/194208373-49fecea8-d3e3-4320-ba8c-033dfe917746.gif)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### ✅ **Show contact info (name, phone number) with Pagination**
+![m-showall-pagination](https://user-images.githubusercontent.com/53102589/194208478-032fa21f-c8b0-413f-9b0b-bf9fab68cedb.gif)
 
-### `npm test`
+### ✅ **Mark favorite contacts**
+![m-fav](https://user-images.githubusercontent.com/53102589/194208492-1b56d8ff-894c-4fa0-89d7-95e3a4e91e38.gif)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ✅ **Search contact (by name) & **Show contact details****
+![m-search-show](https://user-images.githubusercontent.com/53102589/194208500-5cb11c33-0737-4fd3-95ee-26566edf8225.gif)
 
-### `npm run build`
+### ✅ **Create contact & add multiple number**
+![m-add](https://user-images.githubusercontent.com/53102589/194208518-d73b1cf8-78b6-4ff8-aa59-eca5167eea5e.gif)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ✅ **Check name must not contains special characters and must unique**
+![m-checkname](https://user-images.githubusercontent.com/53102589/194208525-94d30a58-694b-4952-851b-821353e01315.gif)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ✅ **Edit contact**
+![m-edit](https://user-images.githubusercontent.com/53102589/194208534-4597ee31-eb13-40be-bdf8-5f222a423b94.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### ✅ **Delete contact**
+![m-delete](https://user-images.githubusercontent.com/53102589/194208544-39ee307b-5b4a-42fd-b95e-9df087fed5b9.gif)
