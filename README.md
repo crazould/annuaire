@@ -17,6 +17,9 @@
 - ✅ **Mark favorite contacts**
   - Mobile
   - Dekstop
+- ✅ **Show contact details**
+  - Mobile
+  - Dekstop
 - ✅ **Create contact**
   - Mobile
   - Dekstop
@@ -36,9 +39,6 @@
   - Mobile
   - Dekstop
 - ✅ **Check name must not contains special characters and must unique**
-  - Mobile
-  - Dekstop
-- ✅ **Show contact details**
   - Mobile
   - Dekstop
 
