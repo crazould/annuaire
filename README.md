@@ -8,6 +8,9 @@
 - Edit Contact
 
 # Features
+- ✅ **Dark mode**
+  - Mobile
+  - Dekstop
 - ✅ **Show contact info (name, phone number) with Pagination**
   - Mobile
   - Dekstop
