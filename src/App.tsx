@@ -67,7 +67,7 @@ function App() {
     <ThemeProvider theme={isDark ? themeDark : themeLight}>
       <ContactsContext.Provider value={{ contacts, setContacts }}>
         <NotificationContext.Provider value={{ notif, setNotif }}>
-          <Notification/>
+          <Notification />
           <Header isDark={isDark} setIsDark={setIsDark} />
           <Wrapper>
             <RouteList />
