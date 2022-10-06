@@ -17,10 +17,7 @@
 - ✅ **Mark favorite contacts**
   - Mobile
   - Dekstop
-- ✅ **Show contact details**
-  - Mobile
-  - Dekstop
-- ✅ **Search contact (by name)**
+- ✅ **Search contact (by name) & **Show contact details****
   - Mobile
   - Dekstop
 - ✅ **Create contact & add multiple number**
