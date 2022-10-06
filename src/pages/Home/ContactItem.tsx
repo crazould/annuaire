@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useDeleteContact from "../../hooks/useDeleteContact";
 import { Contact } from "../../App";
 import ContactsContext from "../../context/ContactsContext";
-import { IconStar, IconTrash, IconEdit, IconUserCircle } from "@tabler/icons";
+import { IconStar, IconTrash, IconEdit } from "@tabler/icons";
 import IconBtn from "../../components/IconBtn";
 import Card from "../../components/Card";
 
@@ -56,6 +56,8 @@ const ContactItem = ({
       width: calc(98% / 2);
     }
     @media (min-width: 1024px) {
+      margin-top: 2.25rem;
+      padding-top: 2.75rem;
       display: block;
       .contact-info {
         min-height: 70px;
@@ -80,7 +82,11 @@ const ContactItem = ({
           text-transform: uppercase;
           box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
             0 2px 4px -2px rgb(0 0 0 / 0.1);
-          top: -1.25rem;
+          top: -1.5rem;
+          @media (min-width: 1024px) {
+            padding: 0.75rem 1.25rem;
+            font-size: 2rem;
+          }
         `}
       >
         {first_name[0]}
@@ -91,7 +97,7 @@ const ContactItem = ({
             font-weight: bold;
             margin-bottom: 0.25rem;
             @media (min-width: 1024px) {
-              font-size: 1.25rem
+              font-size: 1.25rem;
             }
           `}
         >{`${first_name} ${last_name}`}</div>

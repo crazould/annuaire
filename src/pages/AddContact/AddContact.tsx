@@ -65,13 +65,12 @@ const AddContact = () => {
   };
 
   const phonesInput = numbers.map((number, idx) => (
-    <div className="input-group">
+    <div className="input-group" key={idx}>
       <label htmlFor={`number-${idx}`}>{`phone ${idx+1}`}</label>
       <Input
         id={`number-${idx}`}
         onChange={(e) => changePhones(e, idx)}
         placeholder="ex: +628123456789"
-        key={idx}
         type="tel"
         value={number}
         required

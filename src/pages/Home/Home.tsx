@@ -10,6 +10,7 @@ import { IconPlus } from "@tabler/icons";
 import PageLayout from "../../components/PageLayout";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import TextBtn from "../../components/TextBtn";
 
 const Home = () => {
   const nav = useNavigate();
@@ -42,7 +43,17 @@ const Home = () => {
     z-index: 5;
     border-radius: 9999px;
     padding: 1rem;
+    @media (min-width: 1024px) {
+      position: static;
+      font-family: "Futura Md BT", sans-serif;
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
   `;
+
+  const screenWidth = window.screen.width;
 
   return (
     <PageLayout>
@@ -52,7 +63,11 @@ const Home = () => {
           onClick={() => nav("/add")}
           type="button"
         >
-          <IconPlus size={20} stroke={3} />
+          {screenWidth >= 1024 ? (
+            "Create contact"
+          ) : (
+            <IconPlus size={20} stroke={3} />
+          )}
         </Button>
         <Input
           type="text"
