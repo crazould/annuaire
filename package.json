@@ -1,6 +1,6 @@
 {
-  "homepage": "https://crazould.github.io/",
-  "name": "annuaire",
+  "homepage": "https://crazould.github.io/annuaire",
+  "name": "phone-book",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
