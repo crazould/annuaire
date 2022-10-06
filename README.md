@@ -20,25 +20,19 @@
 - ✅ **Show contact details**
   - Mobile
   - Dekstop
-- ✅ **Create contact**
-  - Mobile
-  - Dekstop
-- ✅ **Delete contact**
-  - Mobile
-  - Dekstop
 - ✅ **Search contact (by name)**
+  - Mobile
+  - Dekstop
+- ✅ **Create contact & add multiple number**
+  - Mobile
+  - Dekstop
+- ✅ **Check name must not contains special characters and must unique**
   - Mobile
   - Dekstop
 - ✅ **Edit contact**
   - Mobile
   - Dekstop
-- ✅ **Add Multiple Number**
-  - Mobile
-  - Dekstop
-- ✅ **Can add multiple number**
-  - Mobile
-  - Dekstop
-- ✅ **Check name must not contains special characters and must unique**
+- ✅ **Delete contact**
   - Mobile
   - Dekstop
 
