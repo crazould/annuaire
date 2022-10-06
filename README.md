@@ -8,10 +8,7 @@
 - Edit Contact
 
 # Features
-- ✅ **Show contact info (name, phone number)**
-  - Mobile
-  - Dekstop
-- ✅ **Show contact info with Pagination**
+- ✅ **Show contact info (name, phone number) with Pagination**
   - Mobile
   - Dekstop
 - ✅ **Mark favorite contacts**
