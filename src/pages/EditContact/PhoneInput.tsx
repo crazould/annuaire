@@ -6,6 +6,7 @@ import useEditPhoneNumber from "../../hooks/useEditPhoneNumber";
 import ActionBtn from "../../components/ActionBtnGroup";
 import Input from "../../components/Input";
 import { formStyle } from "../../styles/components";
+import NotificationContext from "../../context/NotificationContext";
 
 const PhoneInput = ({
   id,
@@ -17,6 +18,7 @@ const PhoneInput = ({
   idx: number;
 }) => {
   const { contacts, setContacts } = useContext(ContactsContext);
+  const { setNotif } = useContext(NotificationContext);
   const [editMode, setEditMode] = useState(false);
   const [newNumber, setNewNumber] = useState(number);
   const [editPhone, { data }] = useEditPhoneNumber(id, number, newNumber);
@@ -29,7 +31,7 @@ const PhoneInput = ({
       newContacts[idx] = { ...newContacts[idx], ...data.update_phone_by_pk };
       localStorage.setItem("contacts", JSON.stringify(newContacts));
       setContacts(newContacts);
-      alert("Edit phone number success");
+      setNotif("Edit number success");
     }
   }, [data]);
 

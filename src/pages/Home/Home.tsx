@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
+import { css } from "@emotion/react";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContactList } from "./ContactList";
@@ -10,11 +10,11 @@ import { IconPlus } from "@tabler/icons";
 import PageLayout from "../../components/PageLayout";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import TextBtn from "../../components/TextBtn";
 
 const Home = () => {
   const nav = useNavigate();
-  const theme = useTheme();
+  const screenWidth = window.screen.width;
+
   const [searchQuery, setSearchQuery] = useState("");
   const { contacts, setContacts } = useContext(ContactsContext);
 
@@ -53,7 +53,6 @@ const Home = () => {
     }
   `;
 
-  const screenWidth = window.screen.width;
 
   return (
     <PageLayout>

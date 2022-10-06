@@ -6,9 +6,11 @@ import useAddNumberToContact from "../../hooks/useAddNumberToContact";
 import ActionBtn from "../../components/ActionBtnGroup";
 import EditPhoneInput from "./PhoneInput";
 import Input from "../../components/Input";
+import NotificationContext from "../../context/NotificationContext";
 
 const EditPhone = ({ contact }: { contact: Contact }) => {
   const { contacts, setContacts } = useContext(ContactsContext);
+  const { setNotif } = useContext(NotificationContext);
   const id = contact.id;
   const [addMode, setAddMode] = useState(false);
   const [newNumber, setNewNumber] = useState("");
@@ -25,7 +27,7 @@ const EditPhone = ({ contact }: { contact: Contact }) => {
       };
       localStorage.setItem("contacts", JSON.stringify(newContacts));
       setContacts(newContacts);
-      alert("Add number to contact success");
+      setNotif("Add number success");
     }
   }, [data]);
 

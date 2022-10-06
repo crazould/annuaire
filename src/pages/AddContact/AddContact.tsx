@@ -5,13 +5,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ContactsContext from "../../context/ContactsContext";
 import useAddContactWithPhones from "../../hooks/useAddContactWithPhones";
-import { formStyle, formTitleStyle } from "../../styles/components";
+import { formStyle } from "../../styles/components";
 import PageLayout from "../../components/PageLayout";
 import checkName from "../../utils/checkName";
 import Input from "../../components/Input";
 import TextBtn from "../../components/TextBtn";
 import IconBtn from "../../components/IconBtn";
 import Card from "../../components/Card";
+import NotificationContext from "../../context/NotificationContext";
 
 const AddContact = () => {
   const nav = useNavigate();
@@ -19,6 +20,8 @@ const AddContact = () => {
   const [lastName, setLastName] = useState("");
   const [numbers, setNumbers] = useState([""]);
   const { contacts, setContacts } = useContext(ContactsContext);
+  const { setNotif } = useContext(NotificationContext);
+
   const [addContact, { data }] = useAddContactWithPhones(
     firstName,
     lastName,
@@ -30,7 +33,7 @@ const AddContact = () => {
     const newContacts = [...contacts, data.insert_contact.returning[0]];
     localStorage.setItem("contacts", JSON.stringify(newContacts));
     setContacts(newContacts);
-    alert("Add contact success");
+    setNotif("Add contact success")
   }, [data]);
 
   const changeFirstName = (e: React.ChangeEvent) => {
@@ -55,7 +58,7 @@ const AddContact = () => {
     e.preventDefault();
     const msg = checkName(`${firstName} ${lastName}`, contacts);
     if (msg) {
-      alert(msg);
+      setNotif(msg)
       return;
     }
     addContact();
@@ -66,7 +69,7 @@ const AddContact = () => {
 
   const phonesInput = numbers.map((number, idx) => (
     <div className="input-group" key={idx}>
-      <label htmlFor={`number-${idx}`}>{`phone ${idx+1}`}</label>
+      <label htmlFor={`number-${idx}`}>{`phone ${idx + 1}`}</label>
       <Input
         id={`number-${idx}`}
         onChange={(e) => changePhones(e, idx)}
@@ -82,7 +85,7 @@ const AddContact = () => {
     <PageLayout>
       <Card>
         <form onSubmit={handleSubmit} css={formStyle}>
-          <h1 >Add Contact</h1>
+          <h1>Add Contact</h1>
           <div className="input-group">
             <label htmlFor="firstName">first name</label>
             <Input

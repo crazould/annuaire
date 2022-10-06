@@ -16,6 +16,7 @@ const Button = ({
   const theme = useTheme();
 
   const btnStyle = css`
+    font-family: "Futura Md BT", sans-serif;
     color: #fafafa;
     font-size: 1rem;
     background-color: ${theme.accent};

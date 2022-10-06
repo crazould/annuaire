@@ -8,6 +8,7 @@ import ContactsContext from "../../context/ContactsContext";
 import { IconStar, IconTrash, IconEdit } from "@tabler/icons";
 import IconBtn from "../../components/IconBtn";
 import Card from "../../components/Card";
+import NotificationContext from "../../context/NotificationContext";
 
 const ContactItem = ({
   id,
@@ -19,6 +20,7 @@ const ContactItem = ({
   const theme = useTheme();
   const nav = useNavigate();
   const { contacts, setContacts } = useContext(ContactsContext);
+  const { setNotif } = useContext(NotificationContext);
   const [deleteContact, { data }] = useDeleteContact(id);
   const handleDelete = () => deleteContact();
 
@@ -31,7 +33,7 @@ const ContactItem = ({
       newContacts.splice(index, 1);
       localStorage.setItem("contacts", JSON.stringify(newContacts));
       setContacts(newContacts);
-      alert("delete success");
+      setNotif("delete contact success");
     }
   }, [data]);
 

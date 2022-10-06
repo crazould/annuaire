@@ -12,12 +12,15 @@ import { formStyle } from "../../styles/components";
 import Input from "../../components/Input";
 import TextBtn from "../../components/TextBtn";
 import Card from "../../components/Card";
+import NotificationContext from "../../context/NotificationContext";
+
 
 const EditContact = () => {
   const nav = useNavigate();
   const { contact_id } = useParams();
   const id = contact_id ? parseInt(contact_id) : -1;
   const { contacts, setContacts } = useContext(ContactsContext);
+  const { setNotif } = useContext(NotificationContext);
   const contact = contacts.find((c) => c.id === id);
   const { first_name, last_name } = contact
     ? contact
@@ -35,7 +38,7 @@ const EditContact = () => {
       newContacts[idx] = { ...newContacts[idx], ...data.update_contact_by_pk };
       localStorage.setItem("contacts", JSON.stringify(newContacts));
       setContacts(newContacts);
-      alert("Edit contact success");
+      setNotif("Edit contact success");
     }
   }, [data]);
 
@@ -51,7 +54,7 @@ const EditContact = () => {
     e.preventDefault();
     const msg = checkName(`${firstName} ${lastName}`, contacts);
     if (msg) {
-      alert(msg);
+      setNotif(msg);
       return;
     }
     editContact();
